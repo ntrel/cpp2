@@ -40,18 +40,7 @@ initialize a variable, or neither.
 
 ## Pointers
 
-### `new<T>` gives `unique_ptr`
-
-```c++
-    p: *int = new<int>;
-```
-
-### Initialization to null
-
-Initialization to null is an error:
-```c++
-    q: *int = nullptr; // error
-```
+A pointer to T has type `*T`.
 
 ### Postfix operators
 
@@ -61,6 +50,22 @@ Address of and dereference operators are postfix:
     p: *int = x&;
     y := p*;
 ```
+This makes `p->` obsolete - use `p*.` instead.
+
+### `new<T>` gives `unique_ptr`
+
+```c++
+    p: *int = new<int>;
+```
+
+### Null dereferences
+
+Initialization from null is an error:
+```c++
+    q: *int = nullptr; // error
+```
+`cppfront` has a `-n` switch to detect unchecked pointer dereferences.
+
 
 # Functions
 
