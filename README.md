@@ -52,11 +52,15 @@ Address of and dereference operators are postfix:
 ```
 This makes `p->` obsolete - use `p*.` instead.
 
-### `new<T>` gives `unique_ptr`
+### `new<T>`
+
+`new<T>` gives `unique_ptr` by default:
 
 ```c++
-    p: *int = new<int>;
+    p: std::unique_ptr<int> = new<int>;
+    q: std::shared_ptr<int> = shared.new<int>;
 ```
+Note: `gc.new<T>` will allocate from a garbage collected arena.
 
 ### Null dereferences
 
