@@ -6,6 +6,7 @@ omitted for type inference.
     x: int = 42;
     y := x;
 ```
+A global declaration can be used before the line declaring it.
 
 ## C++
 
@@ -64,11 +65,11 @@ Note: `gc.new<T>` will allocate from a garbage collected arena.
 
 ### Null dereferences
 
-Initialization from null is an error:
+Initialization or assignment from null is an error:
 ```c++
     q: *int = nullptr; // error
 ```
-`cppfront` has a `-n` switch to detect unchecked pointer dereferences.
+Note: `cppfront` has a `-n` switch to detect pointer dereferences.
 
 
 # Functions
@@ -81,7 +82,8 @@ Function declarations follow the [declaration form](#declarations),
 except each parameter must have an identifier using the form
 `identifier: Type`.
 
-A function is initialized from a statement, or an expression.
+A function is initialized from a statement or an expression.
+For the latter, `return` is implied.
 
 ```c++
 f: (i: int) -> int = return i;
@@ -107,15 +109,15 @@ main: () -> int = {
 
 ## Uniform Call Syntax
 
-If a method doesn't exist with method call syntax, but there is a
-function whose first parameter takes the type of the 'object' expression,
-then that function is called instead.
+If a method doesn't exist when using method call syntax, and there is a
+function whose first parameter can take the type of the 'object'
+expression, then that function is called instead.
 ```c++
 main: () -> int = {
     // call C functions
     myfile := fopen("xyzzy", "w");
     myfile.fprintf("Hello %d!", 2); // fprintf(myfile, "Hello %d!", 2)
-    myfile.fclose();
+    myfile.fclose(); // fclose(myfile)
 }
 ```
 
