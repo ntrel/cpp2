@@ -41,7 +41,7 @@ initialize a variable, or neither.
 
 ## Pointers
 
-A pointer to T has type `*T`.
+A pointer to T has type `*T`. Pointer arithmetic is illegal.
 
 ### Postfix Operators
 
@@ -62,6 +62,8 @@ This makes `p->` obsolete - use `p*.` instead.
     q: std::shared_ptr<int> = shared.new<int>;
 ```
 Note: `gc.new<T>` will allocate from a garbage collected arena.
+
+There is no `delete` operator. Raw pointers cannot own memory.
 
 ### Null Dereferences
 
