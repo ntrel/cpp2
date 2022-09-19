@@ -25,7 +25,7 @@ Note: `cppfront` has a `-p` switch to only allow pure C++2.
 
 # Variables
 
-## Uninitialized variables
+## Uninitialized Variables
 
 Use of an uninitialized variable is statically detected.
 Both branches of an `if` statement must
@@ -43,7 +43,7 @@ initialize a variable, or neither.
 
 A pointer to T has type `*T`.
 
-### Postfix operators
+### Postfix Operators
 
 Address of and dereference operators are postfix:
 ```c++
@@ -63,7 +63,7 @@ This makes `p->` obsolete - use `p*.` instead.
 ```
 Note: `gc.new<T>` will allocate from a garbage collected arena.
 
-### Null dereferences
+### Null Dereferences
 
 Initialization or assignment from null is an error:
 ```c++
@@ -71,6 +71,17 @@ Initialization or assignment from null is an error:
 ```
 Note: `cppfront` has a `-n` switch to detect pointer dereferences.
 
+## String Interpolation
+
+A bracketed expression with a trailing `$` inside a string will
+evaluate the expression, convert it to string and insert it into the
+string.
+```c++
+    a := 2;
+    b: std::optional<int> = 2;
+    s: std::string = "a^2 + b = (a * a + b.value())$\n";
+    assert(s == "a^2 + b = 6\n");
+```
 
 # Functions
 
