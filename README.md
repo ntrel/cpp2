@@ -85,6 +85,12 @@ string.
     assert(s == "a^2 + b = 6\n");
 ```
 
+## Bounds Checks
+
+# Constructs
+
+<https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
+
 # Functions
 
 A function has type `(ParameterTypes) -> Type`. `ParameterTypes` is a
@@ -134,3 +140,31 @@ main: () -> int = {
 }
 ```
 
+## Parameter Passing
+
+<https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-parameter-passing.cpp2>
+
+## Contracts
+
+<https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-postexpression-with-capture.cpp2>
+
+## Function Literals
+
+## Template Functions
+
+When the parameter type is `_`, this implies a template function with
+inferred parameter type.
+
+### `is`
+
+```c++
+test_generic: ( x: _ ) = {
+    msg: std::string = typeid(x).name();
+    msg += " is int? ";
+    print( msg, x is int );
+}
+```
+
+### `inspect`
+
+<https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
