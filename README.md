@@ -91,6 +91,15 @@ string.
 
 # Constructs
 
+## `for`
+
+* `for` *expression* `do` *functionLiteral*
+* `for` *expression* `next` *expression* `do` *functionLiteral*
+
+```c++
+for v do :(i) =
+    println(i);
+```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
 # Functions
