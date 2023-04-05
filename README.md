@@ -1,3 +1,5 @@
+Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
+
 # Declarations
 
 These are of the form `identifer: Type = initializer`. `Type` can be
