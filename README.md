@@ -110,6 +110,8 @@ For the latter, `return` is implied.
 f: (i: int) -> int = return i;
 g: (i: int) -> int = i; // same
 ```
+See also [Template Functions](#template-functions).
+
 
 ## Returning a Tuple
 
@@ -154,10 +156,15 @@ main: () -> int = {
 
 ## Template Functions
 
-When the parameter type is `_`, this implies a template function with
-inferred parameter type.
+When a function parameter type is `_`, this implies a template with a
+corresponding type parameter.
 
-### `is`
+A template function parameter can also be just `identifier`.
+
+
+# Compile-time Expressions
+
+## `is`
 
 ```c++
 test_generic: ( x: _ ) = {
@@ -167,6 +174,6 @@ test_generic: ( x: _ ) = {
 }
 ```
 
-### `inspect`
+## `inspect`
 
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
