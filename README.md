@@ -114,7 +114,7 @@ and [postconditions](#contracts):
 ## `is`
 
 ```c++
-test_generic: ( x: _ ) = {
+test_generic: ( x ) = {
     msg: std::string = typeid(x).name();
     msg += " is int? ";
     print( msg, x is int );
@@ -227,7 +227,7 @@ A literal can capture variables:
 
 ```c++
 y: std::string = "\n";
-callback := :(x:_) = { std::cout << x << y&$*; };
+callback := :(x) = { print(x, y&$*); };
 ```
 `y&$*` means dereference the captured address of `y`.
 
