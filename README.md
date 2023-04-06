@@ -90,6 +90,43 @@ Initialization or assignment from null is an error:
 ```
 Note: `cppfront` has a `-n` switch to detect pointer dereferences.
 
+## User-Defined Types
+
+```c++
+myclass : type = {
+    data: int = 42;
+    more: std::string = std::to_string(42);
+
+    // default constructor
+    operator=: (out this) = {
+        // use default initializer for this.data
+        more = std::to_string(3.14159);
+    }
+
+    // constructor
+    operator=: (out this, i:int, s: std::string) = {
+        this.data = i;
+        this.more = s;
+    }
+
+    // method
+    print: (this) = {
+        std::println("    data: (data)$, more: (more)$");
+    }
+
+    // destructor
+    operator=: (move this) = {
+        std::println("destroying (data)$ and (more)$");
+    }
+}
+
+main: () = {
+    x: myclass = (99, "abracadabra");
+    x.print();
+    x = myclass();
+    x.print();
+}
+```
 
 # Expressions
 
