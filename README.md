@@ -102,11 +102,30 @@ string.
     assert(s == "a^2 + b = 6\n");
 ```
 
-Note: `$` means 'capture' and is also used in [closures](#function-literals) 
+Note: `$` means 'capture' and is also used in [closures](#function-literals)
 and [postconditions](#contracts):
 <https://github.com/hsutter/cppfront/wiki/Design-note%3A-Capture>
 
 ## Bounds Checks
+
+## `as`
+<https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-inspect-values.cpp2>
+
+## `is`
+
+```c++
+test_generic: ( x: _ ) = {
+    msg: std::string = typeid(x).name();
+    msg += " is int? ";
+    print( msg, x is int );
+}
+```
+
+
+## `inspect`
+
+<https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
+
 
 # Statements
 
@@ -225,18 +244,3 @@ A template function parameter can also be just `identifier`.
 <https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>
 
 
-# Inherited C++ features
-
-## `is`
-
-```c++
-test_generic: ( x: _ ) = {
-    msg: std::string = typeid(x).name();
-    msg += " is int? ";
-    print( msg, x is int );
-}
-```
-
-## `inspect`
-
-<https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
