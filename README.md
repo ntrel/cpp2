@@ -120,10 +120,28 @@ test_generic: ( x ) = {
     print( msg, x is int );
 }
 ```
+Assuming `less_than` and `in` are defined as `constexpr`:
+```c++
+    if i is (less_than(20)) {
+        println("less than 20");
+    }
 
+    if i is (in(10,30)) {
+        println("i is between 10 and 30");
+    }
+```
 
 ## `inspect`
 
+```c++
+    i := 15;
+
+    println(inspect i -> std::string {
+        is (less_than(10)) = "i less than 10";
+        is (in(11,20)) = "i is between 11 and 20";
+        is _ = "i is out of our interest";
+    });
+```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
 
 
