@@ -95,6 +95,10 @@ string.
     assert(s == "a^2 + b = 6\n");
 ```
 
+Note: `$` means 'capture' and is also used in [closures](#function-literals) 
+and [postconditions](#contracts):
+<https://github.com/hsutter/cppfront/wiki/Design-note%3A-Capture>
+
 ## Bounds Checks
 
 # Statements
@@ -170,6 +174,16 @@ main: () -> int = {
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-postexpression-with-capture.cpp2>
 
 ## Function Literals
+
+A literal is declared like a named function, omitting the leading identifier.
+A literal can capture variables:
+
+    ```c++
+    y: std::string = "\n";
+    callback := :(x:_) = { std::cout << x << y&$*; };
+    ```
+`y&$*` means dereference the captured address of `y`.
+
 
 ## Template Functions
 
