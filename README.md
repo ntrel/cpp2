@@ -4,7 +4,7 @@
 * [Statements](#statements)
 * [Functions](#functions)
 * [Expressions](#expressions)
-* [Inherited C++ features](#inherited-c---features)
+* [Inherited C++ features](#inherited-c-features)
 
 Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
 
@@ -109,7 +109,8 @@ and [postconditions](#contracts):
 * `for` *expression* `next` *expression* `do` *functionLiteral*
 
 ```c++
-for v do :(i) =
+vec: std::vector<int> = (1, 2, 3);
+for vec do :(i) =
     println(i);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
