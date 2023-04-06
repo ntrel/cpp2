@@ -171,6 +171,19 @@ main: () -> int = {
 
 ## Contracts
 
+```c++
+vec: std::vector<int> = ();
+
+insert_at: (where: int, val: int)
+    [[pre:  0 <= where && where <= vec.ssize()]]
+    [[post: vec.ssize() == vec.ssize()$ + 1]]
+= {
+    vec.insert( vec.begin()+where, val );
+}
+```
+The postcondition compares the vector size at the end of the function call with
+an expression that captures the vector size at the start of the function call.
+
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-postexpression-with-capture.cpp2>
 
 ## Function Literals
