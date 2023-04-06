@@ -167,6 +167,13 @@ main: () -> int = {
 
 ## Parameter Passing
 
+* in - default
+* out - also used for construction
+* inout
+* move
+* copy
+* forward
+
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-parameter-passing.cpp2>
 
 ## Contracts
@@ -204,6 +211,10 @@ When a function parameter type is `_`, this implies a template with a
 corresponding type parameter.
 
 A template function parameter can also be just `identifier`.
+
+## Operator Overloading
+
+<https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>
 
 
 # Inherited C++ features
