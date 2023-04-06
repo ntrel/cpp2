@@ -192,10 +192,23 @@ Assuming `less_than` and `in` are defined as `constexpr`:
 * `for` *expression* `do` *functionLiteral*
 * `for` *expression* `next` *expression* `do` *functionLiteral*
 
+The first *expression* must be a range.
+*functionLiteral* takes one argument matching the element type of the
+range (which can be inferred). The literal is called with each element
+of the range in turn.
+
 ```c++
 vec: std::vector<int> = (1, 2, 3);
-for vec do :(i) =
-    println(i);
+for vec do :(e) =
+    println(e);
+```
+If `next` is present, evaluate its expression at the
+end of each loop iteration.
+
+```c++
+i := 0
+for vec next i++ do :(e) =
+    println(i, ": ", e);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
