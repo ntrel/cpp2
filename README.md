@@ -1,8 +1,16 @@
+# Contents
+
+* [Declarations](#declarations)
+* [Statements](#statements)
+* [Functions](#functions)
+* [Expressions](#expressions)
+* [Inherited C++ features](#inherited-c---features)
+
 Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
 
 # Declarations
 
-These are of the form `identifer: Type = initializer`. `Type` can be
+These are of the form `identifier: Type = initializer`. `Type` can be
 omitted for type inference.
 ```c++
     x: int = 42;
@@ -89,7 +97,7 @@ string.
 
 ## Bounds Checks
 
-# Constructs
+# Statements
 
 ## `for`
 
@@ -171,7 +179,7 @@ corresponding type parameter.
 A template function parameter can also be just `identifier`.
 
 
-# Compile-time Expressions
+# Inherited C++ features
 
 ## `is`
 
