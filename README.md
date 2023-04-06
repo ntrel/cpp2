@@ -1,4 +1,8 @@
-Disclaimer: These docs are unofficial, may be out of date, may be inaccurate.
+Disclaimer: These docs are unofficial and may be inaccurate or incomplete.
+
+Note: Some examples are adapted from:
+https://github.com/hsutter/cppfront
+
 Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
 
 # Contents
@@ -9,7 +13,6 @@ Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
 * [Statements](#statements)
 * [Functions](#functions)
 * [Expressions](#expressions)
-* [Inherited C++ features](#inherited-c-features)
 
 
 # Declarations
