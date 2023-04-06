@@ -1,12 +1,16 @@
+Disclaimer: These docs are unofficial, may be out of date, may be inaccurate.
+Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
+
 # Contents
 
 * [Declarations](#declarations)
+* [Variables](#variables)
+* [Types](#types)
 * [Statements](#statements)
 * [Functions](#functions)
 * [Expressions](#expressions)
 * [Inherited C++ features](#inherited-c-features)
 
-Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
 
 # Declarations
 
@@ -47,7 +51,7 @@ initialize a variable, or neither.
 ```
 
 
-# Expressions
+# Types
 
 ## Pointers
 
@@ -82,6 +86,9 @@ Initialization or assignment from null is an error:
     q: *int = nullptr; // error
 ```
 Note: `cppfront` has a `-n` switch to detect pointer dereferences.
+
+
+# Expressions
 
 ## String Interpolation
 
