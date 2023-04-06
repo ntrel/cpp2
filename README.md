@@ -198,10 +198,10 @@ an expression that captures the vector size at the start of the function call.
 A literal is declared like a named function, omitting the leading identifier.
 A literal can capture variables:
 
-    ```c++
-    y: std::string = "\n";
-    callback := :(x:_) = { std::cout << x << y&$*; };
-    ```
+```c++
+y: std::string = "\n";
+callback := :(x:_) = { std::cout << x << y&$*; };
+```
 `y&$*` means dereference the captured address of `y`.
 
 
