@@ -32,6 +32,7 @@ omitted for type inference.
     y := x;
 ```
 A global declaration can be used before the line declaring it.
+Declarations can be prefixed with `private` or `public`.
 
 ## C++
 
@@ -317,6 +318,8 @@ main: () = {
     x.print();
 }
 ```
+Data members are `private` by default, whereas methods are `public`.
+
 
 ## `operator=`
 
