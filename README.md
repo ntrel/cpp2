@@ -265,12 +265,13 @@ main: () -> int = {
 
 ## Parameter Passing
 
-* in - default
-* out - also used for construction
-* inout
-* move
-* copy
-* forward
+* `in` - default, read-only.
+* `out` - for writing to. Can accept an uninitialized argument, otherwise destroys the argument.
+  Used for [constructors](#user-defined-types).
+* `inout` - pass by mutable reference.
+* `move` - argument is moved. Used for [destructors](#user-defined-types).
+* `copy` - argument is copied.
+* `forward` - <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-forwarding.cpp2>.
 
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-parameter-passing.cpp2>
 
