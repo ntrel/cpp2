@@ -97,36 +97,48 @@ myclass : type = {
     data: int = 42;
     more: std::string = std::to_string(42);
 
-    // default constructor
-    operator=: (out this) = {
-        // use default initializer for this.data
-        more = std::to_string(3.14159);
-    }
-
-    // constructor
-    operator=: (out this, i:int, s: std::string) = {
-        this.data = i;
-        this.more = s;
-    }
-
     // method
     print: (this) = {
         std::println("    data: (data)$, more: (more)$");
     }
 
-    // destructor
-    operator=: (move this) = {
-        std::println("destroying (data)$ and (more)$");
-    }
+    // non-const method
+    inc: (inout this) = data++;
 }
 
 main: () = {
-    x: myclass = (99, "abracadabra");
+    x: myclass = ();
     x.print();
-    x = myclass();
+    x.inc();
     x.print();
 }
 ```
+
+### `operator=`
+
+Official docs: <https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>.
+
+`operator=` with `out this` defines a constructor.
+When only one subsequent parameter is declared, assignment will also
+call this function.
+
+```c++
+    operator=: (out this, i:int) = {
+        this.data = i;
+    }
+...
+    x: myclass = 99;
+    x = 1;
+```
+With only one parameter `move this`, it is called to destroy the object:
+
+```c++
+    operator=: (move this) = {
+        std::println("destroying (data)$ and (more)$");
+    }
+```
+Objects are destroyed on last use, not end of scope.
+
 
 # Expressions
 
