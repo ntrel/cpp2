@@ -92,6 +92,8 @@ Note: `cppfront` has a `-n` switch to detect pointer dereferences.
 
 ## User-Defined Types
 
+`type` declares a user-defined type with data members and member functions.
+When the first parameter is `this`, it is an instance method.
 ```c++
 myclass : type = {
     data: int = 42;
@@ -118,7 +120,7 @@ main: () = {
 
 Official docs: <https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>.
 
-`operator=` with `out this` defines a constructor.
+`operator=` with an `out this` first parameter is called for construction.
 When only one subsequent parameter is declared, assignment will also
 call this function.
 
