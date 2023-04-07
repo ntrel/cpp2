@@ -222,11 +222,11 @@ Function declarations follow the [declaration form](#declarations),
 except each parameter must have an identifier using the form
 `identifier: Type`. The return type can be inferred by using `-> _`.
 
-A function is initialized from a statement or an expression.
+A function is initialized from a block statement or an expression.
 For the latter, `return` is implied.
 
 ```c++
-f: (i: int) -> int = return i;
+f: (i: int) -> int = { return i; }
 g: (i: int) -> int = i; // same
 ```
 See also [Template Functions](#template-functions).
