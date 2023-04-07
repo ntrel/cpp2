@@ -91,7 +91,8 @@ Initialization or assignment from null is an error:
 ```c++
     q: *int = nullptr; // error
 ```
-Note: `cppfront` has a `-n` switch to detect pointer dereferences.
+`cppfront` also detects a runtime null dereference, for example when dereferencing
+a pointer created in C++ 1 code.
 
 
 # Expressions
