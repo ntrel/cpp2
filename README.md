@@ -91,8 +91,8 @@ Initialization or assignment from null is an error:
 ```c++
     q: *int = nullptr; // error
 ```
-`cppfront` also detects a runtime null dereference, for example when dereferencing
-a pointer created in C++ 1 code.
+By default, ``cppfront` also detects a runtime null dereference.
+For example when dereferencing a pointer created in C++ 1 code.
 
 
 # Expressions
@@ -114,6 +114,12 @@ and [postconditions](#contracts):
 <https://github.com/hsutter/cppfront/wiki/Design-note%3A-Capture>
 
 ## Bounds Checks
+
+By default, `cppfront` detects out-of-bounds indexing:
+```c++
+    v: std::vector = (1, 2);
+    i := v[2]; // aborts program
+```
 
 ## `as`
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-inspect-values.cpp2>
