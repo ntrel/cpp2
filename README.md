@@ -220,7 +220,7 @@ comma-separated list, which can be empty.
 
 Function declarations follow the [declaration form](#declarations),
 except each parameter must have an identifier using the form
-`identifier: Type`.
+`identifier: Type`. The return type can be inferred by using `-> _`.
 
 A function is initialized from a statement or an expression.
 For the latter, `return` is implied.
