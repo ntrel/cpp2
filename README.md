@@ -3,7 +3,14 @@ Disclaimer: These docs are unofficial and may be inaccurate or incomplete.
 Note: Some examples are adapted from:
 https://github.com/hsutter/cppfront
 
-Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
+Note: Examples here use C++23 `std::println` instead of `cout`.
+If you don't have it, you can use this 1/2 parameter definition:
+```c++
+std: namespace = {
+    println: (a) = std::cout << a << "\n";
+    println: (a, b) = std::cout << a << b << "\n";
+}
+```
 
 # Contents
 
@@ -130,7 +137,7 @@ By default, `cppfront` detects out-of-bounds indexing:
 test_generic: ( x ) = {
     msg: std::string = typeid(x).name();
     msg += " is int? ";
-    std::print( msg, x is int );
+    std::println(msg, x is int);
 }
 ```
 Assuming `less_than` and `in` are defined as `constexpr` functions:
