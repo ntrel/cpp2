@@ -13,6 +13,7 @@ Note: Examples here use C++23 `std::print` and `println` instead of `cout`.
 * [Statements](#statements)
 * [Functions](#functions)
 * [Expressions](#expressions)
+* [User-Defined Types](#user-defined-types)
 
 
 # Declarations
@@ -56,6 +57,8 @@ initialize a variable, or neither.
 
 # Types
 
+See also: [User-Defined Types](#user-defined-types).
+
 ## Pointers
 
 A pointer to T has type `*T`. Pointer arithmetic is illegal.
@@ -89,57 +92,6 @@ Initialization or assignment from null is an error:
     q: *int = nullptr; // error
 ```
 Note: `cppfront` has a `-n` switch to detect pointer dereferences.
-
-## User-Defined Types
-
-`type` declares a user-defined type with data members and member functions.
-When the first parameter is `this`, it is an instance method.
-```c++
-myclass : type = {
-    data: int = 42;
-    more: std::string = std::to_string(42);
-
-    // method
-    print: (this) = {
-        std::println("    data: (data)$, more: (more)$");
-    }
-
-    // non-const method
-    inc: (inout this) = data++;
-}
-
-main: () = {
-    x: myclass = ();
-    x.print();
-    x.inc();
-    x.print();
-}
-```
-
-### `operator=`
-
-Official docs: <https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>.
-
-`operator=` with an `out this` first parameter is called for construction.
-When only one subsequent parameter is declared, assignment will also
-call this function.
-
-```c++
-    operator=: (out this, i: int) = {
-        this.data = i;
-    }
-...
-    x: myclass = 99;
-    x = 1;
-```
-With only one parameter `move this`, it is called to destroy the object:
-
-```c++
-    operator=: (move this) = {
-        std::println("destroying (data)$ and (more)$");
-    }
-```
-Objects are destroyed on last use, not end of scope.
 
 
 # Expressions
@@ -324,4 +276,56 @@ When a function parameter type is `_`, this implies a template with a
 corresponding type parameter.
 
 A template function parameter can also be just `identifier`.
+
+
+# User-Defined Types
+
+`type` declares a user-defined type with data members and member functions.
+When the first parameter is `this`, it is an instance method.
+```c++
+myclass : type = {
+    data: int = 42;
+    more: std::string = std::to_string(42);
+
+    // method
+    print: (this) = {
+        std::println("    data: (data)$, more: (more)$");
+    }
+
+    // non-const method
+    inc: (inout this) = data++;
+}
+
+main: () = {
+    x: myclass = ();
+    x.print();
+    x.inc();
+    x.print();
+}
+```
+
+## `operator=`
+
+Official docs: <https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>.
+
+`operator=` with an `out this` first parameter is called for construction.
+When only one subsequent parameter is declared, assignment will also
+call this function.
+
+```c++
+    operator=: (out this, i: int) = {
+        this.data = i;
+    }
+...
+    x: myclass = 99;
+    x = 1;
+```
+With only one parameter `move this`, it is called to destroy the object:
+
+```c++
+    operator=: (move this) = {
+        std::println("destroying (data)$ and (more)$");
+    }
+```
+Objects are destroyed on last use, not end of scope.
 
