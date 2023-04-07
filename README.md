@@ -157,17 +157,17 @@ and [postconditions](#contracts):
 test_generic: ( x ) = {
     msg: std::string = typeid(x).name();
     msg += " is int? ";
-    print( msg, x is int );
+    std::print( msg, x is int );
 }
 ```
 Assuming `less_than` and `in` are defined as `constexpr`:
 ```c++
     if i is (less_than(20)) {
-        println("less than 20");
+        std::println("less than 20");
     }
 
     if i is (in(10,30)) {
-        println("i is between 10 and 30");
+        std::println("i is between 10 and 30");
     }
 ```
 
@@ -176,7 +176,7 @@ Assuming `less_than` and `in` are defined as `constexpr`:
 ```c++
     i := 15;
 
-    println(inspect i -> std::string {
+    std::println(inspect i -> std::string {
         is (less_than(10)) = "i less than 10";
         is (in(11,20)) = "i is between 11 and 20";
         is _ = "i is out of our interest";
@@ -200,7 +200,7 @@ of the range in turn.
 ```c++
 vec: std::vector<int> = (1, 2, 3);
 for vec do :(e) =
-    println(e);
+    std::println(e);
 ```
 If `next` is present, evaluate its expression at the
 end of each loop iteration.
@@ -208,7 +208,7 @@ end of each loop iteration.
 ```c++
 i := 0
 for vec next i++ do :(e) =
-    println(i, ": ", e);
+    std::println(i, ": ", e);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
@@ -299,7 +299,7 @@ A literal can capture variables:
 
 ```c++
 y: std::string = "\n";
-callback := :(x) = { print(x, y&$*); };
+callback := :(x) = { std::print(x, y&$*); };
 ```
 `y&$*` means dereference the captured address of `y`.
 
