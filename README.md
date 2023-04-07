@@ -125,7 +125,7 @@ When only one subsequent parameter is declared, assignment will also
 call this function.
 
 ```c++
-    operator=: (out this, i:int) = {
+    operator=: (out this, i: int) = {
         this.data = i;
     }
 ...
@@ -174,7 +174,7 @@ test_generic: ( x ) = {
     std::print( msg, x is int );
 }
 ```
-Assuming `less_than` and `in` are defined as `constexpr`:
+Assuming `less_than` and `in` are defined as `constexpr` functions:
 ```c++
     if i is (less_than(20)) {
         std::println("less than 20");
@@ -324,9 +324,4 @@ When a function parameter type is `_`, this implies a template with a
 corresponding type parameter.
 
 A template function parameter can also be just `identifier`.
-
-## Operator Overloading
-
-<https://github.com/hsutter/cppfront/wiki/Cpp2:-operator=,-this-&-that>
-
 
