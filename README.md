@@ -46,8 +46,10 @@ int main() {
     return x;
 }
 ```
+A C++2 declaration must not use C++1 declarations internally.
 
 Note: `cppfront` has a `-p` switch to only allow pure C++2.
+
 
 # Variables
 
@@ -233,8 +235,8 @@ f: () -> (i: int, s: std::string) = {
     s = "hi";
 }
 
-main: () -> int = {
-    auto [a,b] = f(); // C++ structured binding
+int main() -> int = {
+    auto [a,b] = f(); // C++ structured binding, no equivalent yet
     assert(a == 10);
     assert(b == "hi");
 }
