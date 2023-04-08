@@ -67,6 +67,14 @@ initialize a variable, or neither.
 
 See also: [User-Defined Types](#user-defined-types).
 
+## Arrays
+
+Use:
+* `std::array` for fixed-size arrays.
+* `std::vector` for dynamic arrays.
+* `std::span` to reference consecutive elements from either.
+
+
 ## Pointers
 
 A pointer to T has type `*T`. Pointer arithmetic is illegal.
@@ -101,6 +109,8 @@ Initialization or assignment from null is an error:
 ```
 By default, ``cppfront` also detects a runtime null dereference.
 For example when dereferencing a pointer created in C++ 1 code.
+
+Instead of using null, use `std::optional<*T>`.
 
 
 # Expressions
