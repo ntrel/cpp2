@@ -25,14 +25,14 @@ std: namespace = {
 
 # Declarations
 
-These are of the form `identifier: Type = initializer`. `Type` can be
-omitted for type inference.
+These are of the form *identifier* `:` *[Type]* `=` *initializer*. 
+*Type* can be omitted for type inference.
+
 ```c++
     x: int = 42;
     y := x;
 ```
 A global declaration can be used before the line declaring it.
-Declarations can be prefixed with `private` or `public`.
 
 ## C++
 
@@ -329,6 +329,7 @@ main: () = {
 }
 ```
 Data members are `private` by default, whereas methods are `public`.
+Member declarations can be prefixed with `private` or `public`.
 
 
 ## `operator=`
