@@ -37,14 +37,14 @@ These are of the form:
 ```
 A global declaration can be used before the line declaring it.
 
-## C++
+## C++1
 
-C++ declarations can be mixed in the same file.
+C++1 declarations can be mixed in the same file.
 
 ```c++
 x := 42;
 
-// C++
+// C++1
 int main() {
     return x;
 }
@@ -113,7 +113,7 @@ Initialization or assignment from null is an error:
     q: *int = nullptr; // error
 ```
 By default, ``cppfront` also detects a runtime null dereference.
-For example when dereferencing a pointer created in C++ 1 code.
+For example when dereferencing a pointer created in C++1 code.
 
 Instead of using null, use `std::optional<*T>`.
 
@@ -238,8 +238,8 @@ f: () -> (i: int, s: std::string) = {
     s = "hi";
 }
 
-int main() -> int = {
-    auto [a,b] = f(); // C++ structured binding, no equivalent yet
+int main() {
+    auto [a,b] = f(); // C++1 structured binding, no equivalent yet
     assert(a == 10);
     assert(b == "hi");
 }
