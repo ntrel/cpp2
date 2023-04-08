@@ -25,8 +25,11 @@ std: namespace = {
 
 # Declarations
 
-These are of the form *identifier* `:` *[Type]* `=` *initializer*. 
-*Type* can be omitted for type inference.
+These are of the form:
+
+*identifier* `:` *[Type]* `=` *initializer*
+
+*Type* can be omitted for type inference (though not at global scope).
 
 ```c++
     x: int = 42;
