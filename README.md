@@ -68,6 +68,16 @@ initialize a variable, or neither.
 ```
 
 
+# Imports
+
+C++23 will support:
+
+```c++
+import std;
+```
+This is implicitly done.
+
+
 # Types
 
 See also: [User-Defined Types](#user-defined-types).
