@@ -196,9 +196,14 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 
 # Statements
 
+## `if`
+
+`if` *expression* *blockStatement [* `else` *blockStatement]*
+
+
 ## `for`
 
-* `for` *expression* *[*`next` *expression]* `do` *functionLiteral*
+`for` *expression* *[*`next` *expression]* `do` *functionLiteral*
 
 The first *expression* must be a range.
 *functionLiteral* takes one argument matching the element type of the
@@ -219,6 +224,7 @@ for vec next i++ do :(e) =
     std::println(i, ": ", e);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
+
 
 # Functions
 
