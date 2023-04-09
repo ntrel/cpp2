@@ -104,6 +104,9 @@ Address of and dereference operators are postfix:
 ```
 This makes `p->` obsolete - use `p*.` instead.
 
+To distinguish binary `&` and `*`, use preceeding whitespace.
+
+
 ### `new<T>`
 
 `new<T>` gives `unique_ptr` by default:
