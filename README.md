@@ -228,9 +228,12 @@ for vec next i++ do :(e) =
 
 # Functions
 
-A function has type: `(` [*parameterTypes*] `)` `->` *returnType*. 
+A function has type:
+
+`(` [*parameterTypes*] `)` `->` *returnType*
 
 *parameterTypes* is a comma-separated list of types, which can be empty.
+E.g. `(int, float) -> bool`.
 
 Function declarations follow the [declaration form](#declarations),
 except each parameter must have an identifier using the form
