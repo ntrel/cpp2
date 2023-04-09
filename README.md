@@ -198,8 +198,7 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 
 ## `for`
 
-* `for` *expression* `do` *functionLiteral*
-* `for` *expression* `next` *expression* `do` *functionLiteral*
+* `for` *expression* *[*`next` *expression]* `do` *functionLiteral*
 
 The first *expression* must be a range.
 *functionLiteral* takes one argument matching the element type of the
