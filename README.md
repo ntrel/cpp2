@@ -27,9 +27,9 @@ std: namespace = {
 
 These are of the form:
 
-*identifier* `:` *[Type]* `=` *initializer*
+*identifier* `:` [*type*] `=` *initializer*
 
-*Type* can be omitted for type inference (though not at global scope).
+*type* can be omitted for type inference (though not at global scope).
 
 ```c++
     x: int = 42;
@@ -198,12 +198,12 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 
 ## `if`
 
-`if` *expression* *blockStatement [* `else` *blockStatement]*
+`if` *expression* *blockStatement* [`else` *blockStatement*]
 
 
 ## `for`
 
-`for` *expression* *[*`next` *expression]* `do` *functionLiteral*
+`for` *expression* [`next` *expression*] `do` *functionLiteral*
 
 The first *expression* must be a range.
 *functionLiteral* takes one argument matching the element type of the
@@ -215,7 +215,7 @@ vec: std::vector<int> = (1, 2, 3);
 for vec do :(e) =
     std::println(e);
 ```
-If `next` is present, evaluate its expression at the
+If `next` is present, its expression will be evaluated at the
 end of each loop iteration.
 
 ```c++
@@ -228,13 +228,13 @@ for vec next i++ do :(e) =
 
 # Functions
 
-A function has type `(ParameterTypes) -> Type`. `ParameterTypes` is a
-comma-separated list, which can be empty.
-`Type` is the return type.
+A function has type: `(` [*parameterTypes*] `)` `->` *returnType*. 
+
+*parameterTypes* is a comma-separated list of types, which can be empty.
 
 Function declarations follow the [declaration form](#declarations),
 except each parameter must have an identifier using the form
-`identifier: Type`. The return type can be inferred by using `-> _`.
+*identifier* `:` *type*. The return type can be inferred by using `-> _`.
 
 A function is initialized from a block statement or an expression.
 For the latter, `return` is implied.
