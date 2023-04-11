@@ -239,6 +239,8 @@ Function declarations follow the [declaration form](#declarations),
 except each parameter must have an identifier using the form
 *identifier* `:` *type*. The return type can be inferred by using `-> _`.
 
+[*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*] `=` (*expression* `;` | *blockStatement*)
+
 A function is initialized from a block statement or an expression.
 For the latter, `return` is implied.
 
@@ -323,6 +325,12 @@ callback := :(x) = { std::print(x, y&$*); };
 
 ## Template Functions
 
+A template function declaration can have template parameters:
+
+`:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnType*]
+
+E.g. `size:<T> () = sizeof(T);`
+
 When a function parameter type is `_`, this implies a template with a
 corresponding type parameter.
 
@@ -383,3 +391,7 @@ With only one parameter `move this`, it is called to destroy the object:
 ```
 Objects are destroyed on last use, not end of scope.
 
+
+## Type Templates
+
+`:` [`<` [*templateParameters*] `>`] `type` `=`
