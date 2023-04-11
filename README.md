@@ -236,7 +236,7 @@ for vec next i++ do :(e) =
 E.g. `(int, float) -> bool`.
 
 *functionDeclaration*:
- * [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*] `=` (*expression* `;` | *blockStatement*)
+ * [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*]
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
@@ -246,6 +246,9 @@ Each parameter must have an identifier:
 
 If `-> returnType` is missing, the function returns `void`. 
 The return type can be inferred by using `-> _`.
+
+*functionInitializer*:
+ * (*expression* `;` | *blockStatement*)
 
 A function is initialized from a block statement or an expression.
 For the latter, `return` is implied.
