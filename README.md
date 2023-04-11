@@ -27,7 +27,8 @@ std: namespace = {
 
 These are of the form:
 
-*identifier* `:` [*type*] `=` *initializer*
+*declaration*:
+ * *identifier* `:` [*type*] `=` *initializer*
 
 *type* can be omitted for type inference (though not at global scope).
 
@@ -238,8 +239,10 @@ E.g. `(int, float) -> bool`.
  * [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*] `=` (*expression* `;` | *blockStatement*)
 
 Function declarations extend the [declaration form](#declarations).
-Each parameter must have an identifier using the form
-*identifier* `:` *type*. 
+Each parameter must have an identifier:
+
+*parameter*:
+ * *identifier* `:` *type*. 
 
 If `-> returnType` is missing, the function returns `void`. 
 The return type can be inferred by using `-> _`.
@@ -330,7 +333,8 @@ callback := :(x) = { std::print(x, y&$*); };
 
 A template function declaration can have template parameters:
 
-`:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnType*]
+*functionTemplate*:
+ * [*identifier*] `:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnType*]
 
 E.g. `size:<T> () = sizeof(T);`
 
@@ -402,4 +406,5 @@ Objects are destroyed on last use, not end of scope.
 
 ## Type Templates
 
-`:` [`<` [*templateParameters*] `>`] `type` `=`
+*typeTemplate*:
+ * [*identifier*] `:` [`<` [*templateParameters*] `>`] `type`
