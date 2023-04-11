@@ -228,18 +228,21 @@ for vec next i++ do :(e) =
 
 # Functions
 
-A function has type:
-
-`(` [*parameterTypes*] `)` `->` *returnType*
+*functionType*:
+ * `(` [*parameterTypes*] `)` `->` *returnType*
 
 *parameterTypes* is a comma-separated list of types, which can be empty.
 E.g. `(int, float) -> bool`.
 
-Function declarations follow the [declaration form](#declarations),
-except each parameter must have an identifier using the form
-*identifier* `:` *type*. The return type can be inferred by using `-> _`.
+*functionDeclaration*:
+ * [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*] `=` (*expression* `;` | *blockStatement*)
 
-[*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*] `=` (*expression* `;` | *blockStatement*)
+Function declarations extend the [declaration form](#declarations).
+Each parameter must have an identifier using the form
+*identifier* `:` *type*. 
+
+If `-> returnType` is missing, the function returns `void`. 
+The return type can be inferred by using `-> _`.
 
 A function is initialized from a block statement or an expression.
 For the latter, `return` is implied.
