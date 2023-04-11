@@ -242,7 +242,7 @@ Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
 
 *parameter*:
- * *identifier* `:` *type*. 
+ * [*parameterStorage*] *identifier* `:` *type*. 
 
 If `-> returnType` is missing, the function returns `void`. 
 The return type can be inferred by using `-> _`.
