@@ -339,6 +339,11 @@ corresponding type parameter.
 
 A template function parameter can also be just `identifier`.
 
+```c++
+f: (x: _) = x;
+g: (x) = x; // same
+```
+
 
 # User-Defined Types
 
