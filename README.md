@@ -304,6 +304,15 @@ main: () -> int = {
 
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-parameter-passing.cpp2>
 
+A variable can also be explictly moved.
+
+```c++
+    x: std::string = "hi";
+    z := (move x);
+    assert(z == "hi");
+    assert(x.length() == 0);
+```
+
 ## Contracts
 
 ```c++
