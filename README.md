@@ -337,7 +337,7 @@ callback := :(x) = { std::print(x, y&$*); };
 A template function declaration can have template parameters:
 
  * *functionTemplate*:
-   + [*identifier*] `:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnType*]
+   + [*identifier*] `:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnSpec*] [`requires` *constExpression*]
 
 E.g. `size:<T> () = sizeof(T);`
 
@@ -410,4 +410,4 @@ Objects are destroyed on last use, not end of scope.
 ## Type Templates
 
  * *typeTemplate*:
-   + [*identifier*] `:` [`<` [*templateParameters*] `>`] `type`
+   + [*identifier*] `:` `<` [*templateParameters*] `>` `type` [`requires` *constExpression*]
