@@ -12,6 +12,8 @@ std: namespace = {
     println: (a, b) = std::cout << a << b << "\n";
 }
 ```
+You will also need to manually `#include <cassert>` for `assert`.
+
 
 # Contents
 
@@ -433,6 +435,7 @@ Objects are destroyed on last use, not end of scope.
     v2 :== v;
     //v2++; // error
     v++;
+    assert(v == v2);
 ```
 ```c++
 main: () = 
