@@ -421,3 +421,24 @@ Objects are destroyed on last use, not end of scope.
 
  * *typeTemplate*:
    + [*identifier*] `:` `<` [*templateParameters*] `>` `type` [`requires` *constExpression*]
+
+
+## Aliases
+
+ * *alias*:
+   + *identifier* `:` [`type` | `namespace`] `==` *aliasInitializer*
+
+```c++
+    v := 5;
+    v2 :== v;
+    //v2++; // error
+    v++;
+```
+```c++
+main: () = 
+{
+    myfunc :== main;
+    view: type == std::string_view;
+    N4: namespace == std::literals;
+}
+```
