@@ -236,16 +236,16 @@ for vec next i++ do :(e) =
 E.g. `(int, float) -> bool`.
 
  * *functionDeclaration*:
-   + [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*]
+   + [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnSpec*]
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
 
  * *parameter*:
-   + [*parameterStorage*] *identifier* `:` *type*. 
+   + [*[parameterStorage](#parameter-passing)*] *identifier* `:` *type*. 
 
-If `-> returnType` is missing, the function returns `void`. 
-The return type can be inferred by using `-> _`.
+If `-> returnSpec` is missing, the function returns nothing (like Cpp1 `void`). 
+The return type can be inferred from the initializer by using `-> _`.
 
  * *functionInitializer*:
    + (*expression* `;` | *blockStatement*)
