@@ -200,11 +200,26 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 
 # Statements
 
+## `if`
+
 * *ifStatement*:
   + `if` *expression* *blockStatement* [`else` *blockStatement*]
-* *whileStatement*:
-  + `while` *expression* *blockStatement*
 
+
+## `while`
+
+* *whileStatement*:
+  + `while` *expression* [`next` *expression*] *blockStatement*
+
+If `next` is present, its expression will be evaluated at the
+end of each loop iteration.
+
+```c++
+i := 0;
+while i < 4 next i++ {
+    std::println(i);
+}
+```
 
 ## `for`
 
@@ -220,14 +235,6 @@ of the range in turn.
 vec: std::vector<int> = (1, 2, 3);
 for vec do :(e) =
     std::println(e);
-```
-If `next` is present, its expression will be evaluated at the
-end of each loop iteration.
-
-```c++
-i := 0
-for vec next i++ do :(e) =
-    std::println(i, ": ", e);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
