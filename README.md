@@ -230,6 +230,21 @@ for vec next i++ do :(e) =
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
 
+### Labelled `break` and `continue`
+
+The target of these statements can be a labelled loop.
+
+```c++
+    outer: while true {
+        j := 0;
+        while j < 3 next j++ {
+            if done() {
+                break outer;
+            }
+        }
+    }
+```
+
 # Functions
 
  * *functionType*:
