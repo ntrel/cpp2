@@ -1,10 +1,11 @@
 Disclaimer: These docs are unofficial and may be inaccurate or incomplete.
 
-Note: Some examples are adapted from:
+Note: Some examples are snipped/adapted from:
 https://github.com/hsutter/cppfront
 
 Note: Examples here use C++23 `std::println` instead of `cout`.
 If you don't have it, you can use this 1/2 parameter definition:
+
 ```c++
 std: namespace = {
     println: (a) = std::cout << a << "\n";
