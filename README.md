@@ -27,8 +27,8 @@ std: namespace = {
 
 These are of the form:
 
-*declaration*:
- * *identifier* `:` [*type*] `=` *initializer*
+ * *declaration*:
+   + *identifier* `:` [*type*] `=` *initializer*
 
 *type* can be omitted for type inference (though not at global scope).
 
@@ -229,26 +229,26 @@ for vec next i++ do :(e) =
 
 # Functions
 
-*functionType*:
- * `(` [*parameterTypes*] `)` `->` *returnType*
+ * *functionType*:
+   + `(` [*parameterTypes*] `)` `->` *returnType*
 
 *parameterTypes* is a comma-separated list of types, which can be empty.
 E.g. `(int, float) -> bool`.
 
-*functionDeclaration*:
- * [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*]
+ * *functionDeclaration*:
+   + [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnType*]
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
 
-*parameter*:
- * [*parameterStorage*] *identifier* `:` *type*. 
+ * *parameter*:
+   + [*parameterStorage*] *identifier* `:` *type*. 
 
 If `-> returnType` is missing, the function returns `void`. 
 The return type can be inferred by using `-> _`.
 
-*functionInitializer*:
- * (*expression* `;` | *blockStatement*)
+ * *functionInitializer*:
+   + (*expression* `;` | *blockStatement*)
 
 A function is initialized from a block statement or an expression.
 For the latter, `return` is implied.
@@ -336,8 +336,8 @@ callback := :(x) = { std::print(x, y&$*); };
 
 A template function declaration can have template parameters:
 
-*functionTemplate*:
- * [*identifier*] `:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnType*]
+ * *functionTemplate*:
+   + [*identifier*] `:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnType*]
 
 E.g. `size:<T> () = sizeof(T);`
 
@@ -409,5 +409,5 @@ Objects are destroyed on last use, not end of scope.
 
 ## Type Templates
 
-*typeTemplate*:
- * [*identifier*] `:` [`<` [*templateParameters*] `>`] `type`
+ * *typeTemplate*:
+   + [*identifier*] `:` [`<` [*templateParameters*] `>`] `type`
