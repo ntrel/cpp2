@@ -200,14 +200,16 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 
 # Statements
 
-## `if`
-
-`if` *expression* *blockStatement* [`else` *blockStatement*]
+* *ifStatement*:
+  + `if` *expression* *blockStatement* [`else` *blockStatement*]
+* *whileStatement*:
+  + `while` *expression* *blockStatement*
 
 
 ## `for`
 
-`for` *expression* [`next` *expression*] `do` *functionLiteral*
+* *forStatement*:
+  + `for` *expression* [`next` *expression*] `do` *functionLiteral*
 
 The first *expression* must be a range.
 *functionLiteral* takes one argument matching the element type of the
