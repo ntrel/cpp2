@@ -287,7 +287,13 @@ g: (i: int) -> int = i; // same
 See also [Template Functions](#template-functions).
 
 
-## Returning a Tuple
+## *returnSpec*
+
+ * *returnSpec*:
+   + [*returnStorage*] (*returnType* | `(` *parameters* `)`)
+
+
+### Returning a Tuple
 
 A function returning a tuple with named members must initialize
 each of those members.
