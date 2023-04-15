@@ -203,7 +203,7 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 ## `if`
 
 * *ifStatement*:
-  + `if` *expression* *blockStatement* [`else` *blockStatement*]
+  + `if` [`constexpr`] *expression* *blockStatement* [`else` *blockStatement*]
 
 
 ## `while`
