@@ -310,6 +310,14 @@ int main() {
 }
 ```
 
+## `main`
+
+* *mainFunction*:
+  + `main` `:` `(` [`args`] `)` [`->` `int`] = *functionInitializer*
+
+If `args` is declared, it is a `std::vector<string_view>`.
+
+
 ## Uniform Call Syntax
 
 If a method doesn't exist when using method call syntax, and there is a
