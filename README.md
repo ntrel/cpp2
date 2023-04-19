@@ -275,11 +275,15 @@ If `-> returnSpec` is missing, the function returns nothing (like Cpp1 `void`).
 The return type can be inferred from the initializer by using `-> _`.
 
  * *functionInitializer*:
-   + (*expression* `;` | *blockStatement*)
+   + (*expression* `;` | *statement*)
 
-A function is initialized from a block statement or an expression.
-For the latter, `return` is implied.
+A function is initialized from a statement or an expression.
+If the function has *returnSpec*, the expression form implies a `return` statement.
 
+```c++
+d: (i: int) = { std::println(i); }
+e: (i: int) = std::println(i); // same
+```
 ```c++
 f: (i: int) -> int = { return i; }
 g: (i: int) -> int = i; // same
