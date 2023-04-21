@@ -338,23 +338,44 @@ main: () -> int = {
 
 ## Parameter Passing
 
-* `in` - default, read-only.
-* `out` - for writing to. Can accept an uninitialized argument, otherwise destroys the argument.
-  Used for [constructors](#user-defined-types).
+* `in` - default, read-only. 
+  Will pass by reference when more efficient, otherwise pass by value.
 * `inout` - pass by mutable reference.
-* `move` - argument is moved. Used for [destructors](#user-defined-types).
-* `copy` - argument is copied.
-* `forward` - <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-forwarding.cpp2>.
+* `out` - must be written to.
+  Can accept an uninitialized argument, otherwise destroys the argument.
+  The first assignment constructs the parameter.
+  Used for [constructors](#operator).
+* `move` - argument can be moved from. Used for [destructors](#operator).
+* `copy` - argument can be copied from.
+* `forward` - accepts lvalue or rvalue, pass by reference.
 
+```c++
+e: (i: int) = i++; // error, `i` is read-only
+f: (inout i: int) = i++; // mutate argument
+
+g: (out i: int) = {
+    v := i; // error, `i` used before initialization
+    // error, `i` was not initialized
+}
+```
+Functions can return by reference:
+```c++
+first: (forward v: std::vector<int>) -> forward int = v[0];
+
+main: () -> int = {
+    v : std::vector = (1,2,3);
+    first(v) = 4;
+}
+```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-parameter-passing.cpp2>
 
-A variable can also be explictly moved.
+A variable can also be explictly moved. The move constructor of `z` will destroy `x`:
 
 ```c++
     x: std::string = "hi";
     z := (move x);
     assert(z == "hi");
-    assert(x.length() == 0);
+    assert(x == "");
 ```
 
 ## Contracts
