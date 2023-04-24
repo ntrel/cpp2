@@ -224,16 +224,16 @@ while i < 4 next i++ {
 ## `for`
 
 * *forStatement*:
-  + `for` *expression* [`next` *expression*] `do` *functionLiteral*
+  + `for` *expression* [`next` *expression*] `do` `(` *parameter* `)` *statement*
 
 The first *expression* must be a range.
-*functionLiteral* takes one argument matching the element type of the
-range (which can be inferred). The literal is called with each element
-of the range in turn.
+*[parameter](#functions)* is initialized from each element of the
+range. The parameter type is inferred. 
+*parameter* can have `inout` *[parameterStorage](#parameter-passing)*.
 
 ```c++
 vec: std::vector<int> = (1, 2, 3);
-for vec do :(e) =
+for vec do (e)
     std::println(e);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
