@@ -24,6 +24,7 @@ You will also need to manually `#include <cassert>` for `assert`.
 * [Functions](#functions)
 * [Expressions](#expressions)
 * [User-Defined Types](#user-defined-types)
+* [Aliases](#aliases)
 
 
 # Declarations
@@ -488,22 +489,20 @@ Objects are destroyed on last use, not end of scope.
    + [*identifier*] `:` `<` [*templateParameters*] `>` `type` [`requires` *constExpression*]
 
 
-## Aliases
+# Aliases
 
  * *alias*:
    + *identifier* `:` [`type` | `namespace`] `==` *aliasInitializer*
 
 ```c++
+main: () = {
     v := 5;
-    v2 :== v;
+    v2 :== v; // variable alias
     //v2++; // error
     v++;
     assert(v == v2);
-```
-```c++
-main: () = 
-{
-    myfunc :== main;
+
+    myfunc :== main; // function alias
     view: type == std::string_view;
     N4: namespace == std::literals;
 }
