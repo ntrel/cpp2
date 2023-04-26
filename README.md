@@ -127,10 +127,11 @@ There is no `delete` operator. Raw pointers cannot own memory.
 ### Null Dereferences
 
 Initialization or assignment from null is an error:
+
 ```c++
     q: *int = nullptr; // error
 ```
-By default, ``cppfront` also detects a runtime null dereference.
+By default, `cppfront` also detects a runtime null dereference.
 For example when dereferencing a pointer created in C++1 code.
 
 Instead of using null, use `std::optional<*T>`.
