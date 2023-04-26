@@ -24,6 +24,7 @@ You will also need to manually `#include <cassert>` for `assert`.
 * [Functions](#functions)
 * [Expressions](#expressions)
 * [User-Defined Types](#user-defined-types)
+* [Templates](#templates)
 * [Aliases](#aliases)
 
 
@@ -415,7 +416,7 @@ callback := :(x) = { std::print(x, y&$*); };
 A template function declaration can have template parameters:
 
  * *functionTemplate*:
-   + [*identifier*] `:` [`<` [*templateParameters*] `>`] `(` [*parameters*] `)` [`->` *returnSpec*] [`requires` *constExpression*]
+   + [*identifier*] `:` [*templateParameterList*] `(` [*parameters*] `)` [`->` *returnSpec*] [`requires` *constExpression*]
 
 E.g. `size:<T> () = sizeof(T);`
 
@@ -488,13 +489,27 @@ Objects are destroyed on last use, not end of scope.
 ## Type Templates
 
  * *typeTemplate*:
-   + [*identifier*] `:` `<` [*templateParameters*] `>` `type` [`requires` *constExpression*]
+   + [*identifier*] `:` [*templateParameterList*] `type` [`requires` *constExpression*]
 
+
+# Templates
+
+ * *templateParameterList*:
+   + `<` *templateParameters* `>`
+ * *templateParameter*
+   + *identifier* [`:` `type`]
+   + *identifier* `:` *type*
+
+For now use `requires` instead of concepts:
+```c++
+f: <T> (_: T) requires std::regular<T> = { }
+```
 
 # Aliases
 
  * *alias*:
-   + *identifier* `:` [`type` | `namespace`] `==` *aliasInitializer*
+   + *identifier* `:` [*templateParameterList*] [`type`] `==` *aliasInitializer*
+   + *identifier* `:` `namespace` `==` *aliasInitializer*
 
 ```c++
 main: () = {
