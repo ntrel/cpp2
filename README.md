@@ -264,7 +264,7 @@ The target of these statements can be a labelled loop.
 E.g. `(int, float) -> bool`.
 
  * *functionDeclaration*:
-   + [*identifier*] `:` `(` [*parameters*] `)` [`->` *returnSpec*]
+   + [*identifier*] `:` `(` [*parameters*] `)` [`throws`] [`->` *returnSpec*] [[*contracts*](#contracts)]
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
@@ -274,6 +274,11 @@ Each parameter must have an identifier:
 
 If `-> returnSpec` is missing, the function returns nothing (like Cpp1 `void`). 
 The return type can be inferred from the initializer by using `-> _`.
+
+See also [Template Functions](#template-functions).
+
+
+## functionInitializer
 
  * *functionInitializer*:
    + (*expression* `;` | *statement*)
@@ -289,19 +294,15 @@ e: (i: int) = std::println(i); // same
 f: (i: int) -> int = { return i; }
 g: (i: int) -> int = i; // same
 ```
-See also [Template Functions](#template-functions).
 
-
-## *returnSpec*
+## returnSpec
 
  * *returnSpec*:
    + [*returnStorage*] (*returnType* | `(` *parameters* `)`)
 
+When return parameters are declared, they must be named. 
+Each parameter must be initialized in the function body.
 
-### Returning a Tuple
-
-A function returning a tuple with named members must initialize
-each of those members.
 ```c++
 f: () -> (i: int, s: std::string) = {
     i = 10;
