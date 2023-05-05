@@ -212,14 +212,13 @@ Assuming `less_than` and `in` are defined as `constexpr` functions:
 ## `while`
 
 * *whileStatement*:
-  + `while` *expression* [`next` *expression*] *blockStatement*
+  + [*parameterList*] `while` *expression* [`next` *expression*] *blockStatement*
 
 If `next` is present, its expression will be evaluated at the
 end of each loop iteration.
 
 ```c++
-i := 0;
-while i < 4 next i++ {
+(copy i := 0) while i < 3 next i++ {
     std::println(i);
 }
 ```
@@ -227,7 +226,7 @@ while i < 4 next i++ {
 ## `for`
 
 * *forStatement*:
-  + `for` *expression* [`next` *expression*] `do` `(` *parameter* `)` *statement*
+  + [*parameterList*] `for` *expression* [`next` *expression*] `do` `(` *parameter* `)` *statement*
 
 The first *expression* must be a range.
 *[parameter](#functions)* is initialized from each element of the
@@ -242,7 +241,7 @@ for vec do (e)
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
 
-### Labelled `break` and `continue`
+## Labelled `break` and `continue`
 
 The target of these statements can be a labelled loop.
 
