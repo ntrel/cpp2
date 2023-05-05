@@ -265,7 +265,9 @@ The target of these statements can be a labelled loop.
 E.g. `(int, float) -> bool`.
 
  * *functionDeclaration*:
-   + [*identifier*] `:` `(` [*parameters*] `)` [`throws`] [`->` *returnSpec*] [[*contracts*](#contracts)]
+   + [*identifier*] `:` *parameterList* [`->` *returnSpec*] [[*contracts*](#contracts)]
+ * *parameterList*:
+   + `(` *parameter** `)`
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
@@ -299,9 +301,9 @@ g: (i: int) -> int = i; // same
 ## returnSpec
 
  * *returnSpec*:
-   + [*returnStorage*] (*returnType* | `(` *parameters* `)`)
+   + [*returnStorage*] (*returnType* | *parameterList*)
 
-When return parameters are declared, they must be named. 
+When a return parameter is declared, it must be named. 
 Each parameter must be initialized in the function body.
 
 ```c++
@@ -415,7 +417,7 @@ callback := :(x) = { std::print(x, y&$*); };
 A template function declaration can have template parameters:
 
  * *functionTemplate*:
-   + [*identifier*] `:` [*templateParameterList*] `(` [*parameters*] `)` [`->` *returnSpec*] [`requires` *constExpression*]
+   + [*identifier*] `:` [*templateParameterList*] *parameterList* [`->` *returnSpec*] [`requires` *constExpression*]
 
 E.g. `size:<T> () = sizeof(T);`
 
