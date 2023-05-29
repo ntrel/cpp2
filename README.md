@@ -169,22 +169,29 @@ By default, `cppfront` detects out-of-bounds indexing:
 
 ## `is`
 
+Test type of expression:
 ```c++
-test_generic: ( x ) = {
-    msg: std::string = typeid(x).name();
-    msg += " is int? ";
-    std::println(msg, x is int);
-}
+    assert(5 is int);
+    assert(!(5 is long));
 ```
-Assuming `less_than` and `in` are defined as `constexpr` functions:
-```c++
-    if i is (less_than(20)) {
-        std::println("less than 20");
-    }
 
-    if i is (in(10,30)) {
-        std::println("i is between 10 and 30");
+Test value by calling a predicate function:
+```c++
+less_than: (value) -> _ =
+    :(x) -> _ = x < value$; // capture parameter
+
+test_int: (i: int) = {
+    if i is (less_than(20)) { // calls `less_than(20)(i)`
+        std::println("(i)$ is less than 20");
     }
+}
+
+main: () = 
+{
+    test_int(5);
+    test_int(15);
+    test_int(25);
+}
 ```
 
 ## `inspect`
