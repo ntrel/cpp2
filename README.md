@@ -429,7 +429,7 @@ A template function declaration can have template parameters:
  * *functionTemplate*:
    + [*identifier*] `:` [*templateParameterList*] *parameterList* [`->` *returnSpec*] [`requires` *constExpression*]
 
-E.g. `size:<T> () = sizeof(T);`
+E.g. `size:<T> () -> _ = sizeof(T);`
 
 When a function parameter type is `_`, this implies a template with a
 corresponding type parameter.
@@ -510,6 +510,21 @@ Objects are destroyed on last use, not end of scope.
  * *templateParameter*
    + *identifier* [`:` `type`]
    + *identifier* `:` *type*
+
+The first parameter form accepts a type.
+
+The second parameter form accepts a value.
+To use a non-type identifier as a template parameter,
+enclose it in parentheses:
+```c++
+f: <i: int> () -> _ = i;
+constexpr int n = 5;
+...
+std::println(f<(n)>());
+```
+Note: This helps the parser to unambiguously parse an expression.
+An identifier argument would otherwise be parsed as a type, which would only
+be resolved as a value after semantic analysis.
 
 For now use `requires` instead of concepts:
 ```c++
