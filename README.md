@@ -169,6 +169,9 @@ By default, `cppfront` detects out-of-bounds indexing:
 
 ## `is`
 
+* *expression* `is` *type*
+* *expression* `is` (*expression*)
+
 Test type of expression:
 ```c++
     assert(5 is int);
