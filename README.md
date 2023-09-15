@@ -135,6 +135,15 @@ Initialization or assignment from null is an error:
 By default, `cppfront` also detects a runtime null dereference.
 For example when dereferencing a pointer created in C++1 code.
 
+```c++
+int *null;
+
+f: () -> int = null*;
+```
+Calling `f` above produces:
+
+    Null safety violation: dynamic null dereference attempt detected
+
 Instead of using null, use `std::optional<*T>`.
 
 
