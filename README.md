@@ -136,9 +136,9 @@ By default, `cppfront` also detects a runtime null dereference.
 For example when dereferencing a pointer created in C++1 code.
 
 ```c++
-int *null;
+int *ptr;
 
-f: () -> int = null*;
+f: () -> int = ptr*;
 ```
 Calling `f` above produces:
 
@@ -174,7 +174,27 @@ By default, `cppfront` detects out-of-bounds indexing:
 ```
 
 ## `as`
-<https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-inspect-values.cpp2>
+
+`x as T` attempts:
+* type conversion (if the type of `x` implicitly converts to `T`)
+* customized conversion (using `operator as<T>`), useful for `std::optional`,
+  `std::variant` etc.
+* construction of `T(x)`
+* dynamic casting
+
+An exception is thrown if the expression is well-formed but the conversion is invalid.
+
+```c++
+c := 'A';
+i: int = c as int;
+assert(i == 65);
+
+v := std::any(5);
+i = v as int;
+
+s := "hi" as std::string;
+assert(s.length() == 2);
+```
 
 ## `is`
 
