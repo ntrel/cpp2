@@ -185,15 +185,15 @@ By default, `cppfront` detects out-of-bounds indexing:
 An exception is thrown if the expression is well-formed but the conversion is invalid.
 
 ```c++
-c := 'A';
-i: int = c as int;
-assert(i == 65);
+    c := 'A';
+    i: int = c as int;
+    assert(i == 65);
 
-v := std::any(5);
-i = v as int;
+    v := std::any(5);
+    i = v as int;
 
-s := "hi" as std::string;
-assert(s.length() == 2);
+    s := "hi" as std::string;
+    assert(s.length() == 2);
 ```
 
 ## `is`
@@ -258,9 +258,9 @@ If `next` is present, its expression will be evaluated at the
 end of each loop iteration.
 
 ```c++
-(copy i := 0) while i < 3 next i++ {
-    std::println(i);
-}
+    (copy i := 0) while i < 3 next i++ {
+        std::println(i);
+    }
 ```
 
 ## `for`
@@ -274,9 +274,9 @@ range. The parameter type is inferred.
 *parameter* can have `inout` *[parameterStorage](#parameter-passing)*.
 
 ```c++
-vec: std::vector<int> = (1, 2, 3);
-for vec do (e)
-    std::println(e);
+    vec: std::vector<int> = (1, 2, 3);
+    for vec do (e)
+        std::println(e);
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-intro-for-with-counter-include-last.cpp2>
 
@@ -447,8 +447,8 @@ A literal is declared like a named function, but omitting the leading identifier
 A literal can capture variables:
 
 ```c++
-y: std::string = "\n";
-callback := :(x) = { std::print(x, y&$*); };
+    y: std::string = "\n";
+    callback := :(x) = { std::print(x, y&$*); };
 ```
 `y&$*` means dereference the captured address of `y`.
 
@@ -484,7 +484,7 @@ myclass : type = {
 
     // method
     print: (this) = {
-        std::println("    data: (data)$, more: (more)$");
+        std::println("data: (data)$, more: (more)$");
     }
 
     // non-const method
@@ -551,7 +551,7 @@ enclose it in parentheses:
 f: <i: int> () -> _ = i;
 constexpr int n = 5;
 ...
-std::println(f<(n)>());
+    std::println(f<(n)>());
 ```
 Note: This helps the parser to unambiguously parse an expression.
 An identifier argument would otherwise be parsed as a type, which would only
