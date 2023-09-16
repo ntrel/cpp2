@@ -167,10 +167,13 @@ and [postconditions](#contracts):
 
 ## Bounds Checks
 
-By default, `cppfront` detects out-of-bounds indexing:
+By default, `cppfront` does runtime bound checks when indexing:
 ```c++
     v: std::vector = (1, 2);
-    i := v[2]; // aborts program
+    i := v[-1]; // aborts program
+
+    s: std::string = ("hi");
+    i = s[2]; // aborts program
 ```
 
 ## `as`
