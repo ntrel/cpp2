@@ -580,3 +580,7 @@ main: () = {
     N4: namespace == std::literals;
 }
 ```
+
+<style>
+    code, pre {background: #eaeaea;}
+</style>
