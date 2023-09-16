@@ -98,7 +98,7 @@ Use:
 
 ## Pointers
 
-A pointer to T has type `*T`. Pointer arithmetic is illegal.
+A pointer to `T` has type `*T`. Pointer arithmetic is illegal.
 
 ### Postfix Operators
 
@@ -110,7 +110,7 @@ Address of and dereference operators are postfix:
 ```
 This makes `p->` obsolete - use `p*.` instead.
 
-To distinguish binary `&` and `*`, use preceeding whitespace.
+To distinguish these from binary `&` and `*`, use preceeding whitespace.
 
 
 ### `new<T>`
@@ -132,6 +132,8 @@ Initialization or assignment from null is an error:
 ```c++
     q: *int = nullptr; // error
 ```
+Instead of using null for `*T`, use `std::optional<*T>`.
+
 By default, `cppfront` also detects a runtime null dereference.
 For example when dereferencing a pointer created in C++1 code.
 
@@ -143,8 +145,6 @@ f: () -> int = ptr*;
 Calling `f` above produces:
 
     Null safety violation: dynamic null dereference attempt detected
-
-Instead of using null, use `std::optional<*T>`.
 
 
 # Expressions
@@ -231,12 +231,12 @@ main: () =
 
 ```c++
     i := 15;
-
-    std::println(inspect i -> std::string {
+    ...
+    s := inspect i -> std::string {
         is (less_than(10)) = "i less than 10";
         is (in(11,20)) = "i is between 11 and 20";
         is _ = "i is out of our interest";
-    });
+    };
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
 
@@ -364,7 +364,8 @@ int main() {
 * *mainFunction*:
   + `main` `:` `(` [`args`] `)` [`->` `int`] = *functionInitializer*
 
-If `args` is declared, it is a `std::vector<string_view>`.
+If `args` is declared, it is a `std::vector<string_view>` containing
+each command-line argument to the program.
 
 
 ## Uniform Call Syntax
@@ -442,7 +443,7 @@ an expression that captures the vector size at the start of the function call.
 
 ## Function Literals
 
-A literal is declared like a named function, omitting the leading identifier.
+A literal is declared like a named function, but omitting the leading identifier.
 A literal can capture variables:
 
 ```c++
