@@ -220,8 +220,12 @@ Test type of an expression - `x is T` attempts:
 * `x.operator is<T>()`
 
 ```c++
-    assert(5 is int);
-    assert(!(5 is long));
+    i := 5;
+    assert(i is int);
+    assert(!(i is long));
+
+    v := std::any(i);
+    assert(v is int); // `v.operator is<int>()`
 ```
 
 Test expression is a certain value - `x is v` attempts:
@@ -232,9 +236,9 @@ Test expression is a certain value - `x is v` attempts:
 
 ```c++
     i := 5;
-    assert(i is int);
-    v := std::any(i); // operator is
-    assert(v is int);
+    assert(i is 5);
+    v := std::any(i);
+    assert(v is 5);
 ```
 
 The last lowering allows to test a value by calling a predicate function
@@ -254,6 +258,7 @@ main: () =
     test_int(25);
 }
 ```
+
 Test a template predicate with a compile-time value - `x is Template` tests `Template<(x)>`
 if the result is convertible to `bool`.
 
