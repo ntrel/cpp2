@@ -202,8 +202,8 @@ An exception is thrown if the expression is well-formed but the conversion is in
 ## `is`
 
 * *isExpression*:
-  + *type* `is` [*type* | *template*]
-  + *expression* `is` [*type* | *expression* | *template*]
+  + *type* `is` (*type* | *template*)
+  + *expression* `is` (*type* | *expression* | *template*)
 
 ### Type Tests
 
