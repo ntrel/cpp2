@@ -202,22 +202,47 @@ An exception is thrown if the expression is well-formed but the conversion is in
 ## `is`
 
 * *isExpression*:
-  + *expression* `is` *type*
-  + *expression* `is` (*expression*)
+  + *type* `is` [*type* | *template*]
+  + *expression* `is` [*type* | *expression* | *template*]
 
-Test type of expression:
+### Type Tests
+
+Test a type matches another type - `T is Target` is `true` when `T` is the
+same type as `Target`.
+
+Test a template predicate with a type - `T is target` attempts `target<T>`
+when the result is convertible to `bool`.
+
+### Expression Tests
+
+Test type of an expression - `x is T` attempts:
+* `true` when the type of `x` is `T`
+* `x.operator is<T>()`
+
 ```c++
     assert(5 is int);
     assert(!(5 is long));
 ```
 
-Test value by calling a predicate function:
-```c++
-less_than: (value) -> _ =
-    :(x) -> _ = x < value$; // capture parameter
+Test expression is a certain value - `x is v` attempts:
+* `x.operator is(v)`
+* `x == v`
+* `x as V == v` where `V` is the type of `v`
+* `v(x)` if the result is `bool`
 
+```c++
+    i := 5;
+    assert(i is int);
+    v := std::any(i); // operator is
+    assert(v is int);
+```
+
+The last lowering allows to test a value by calling a predicate function
+(in this case a [function literal](#function-literals)):
+```c++
 test_int: (i: int) = {
-    if i is (less_than(20)) { // calls `less_than(20)(i)`
+    pred := :(x) -> _ = x < 20;
+    if i is (pred) {
         std::println("(i)$ is less than 20");
     }
 }
@@ -229,6 +254,8 @@ main: () =
     test_int(25);
 }
 ```
+Test a template predicate with a compile-time value - `x is Template` tests `Template<(x)>`
+if the result is convertible to `bool`.
 
 ## `inspect`
 
