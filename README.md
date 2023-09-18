@@ -241,11 +241,11 @@ Test expression is a certain value - `x is v` attempts:
     assert(v is 5);
 ```
 
-The last lowering allows to test a value by calling a predicate function
-(in this case a [function literal](#function-literals)):
+The last lowering allows to test a value by calling a predicate function:
 ```c++
+pred: (x: int) -> bool = x < 20;
+
 test_int: (i: int) = {
-    pred := :(x) -> _ = x < 20;
     if i is (pred) {
         std::println("(i)$ is less than 20");
     }
@@ -258,6 +258,7 @@ main: () =
     test_int(25);
 }
 ```
+Note that `pred` is not a type identifier so it must be parenthesized.
 
 Test a template predicate with a compile-time value - `x is Template` tests `Template<(x)>`
 if the result is convertible to `bool`.
