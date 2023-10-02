@@ -294,10 +294,23 @@ if the result is convertible to `bool`.
   + `if` [`constexpr`] *expression* *blockStatement* [`else` *blockStatement*]
 
 
+## Parameterized Statement
+
+* *parameterizedStatement*:
+  + *parameterList* *statement*
+
+A parameterized statement declares one or more variables that are
+defined only for the scope of *statement*.
+
+```c++
+(tmp := some_complex_expression) func(tmp, tmp);
+// tmp no longer in scope
+```
+
 ## `while`
 
 * *whileStatement*:
-  + [*parameterList*] `while` *expression* [`next` *expression*] *blockStatement*
+  + `while` *expression* [`next` *expression*] *blockStatement*
 
 If `next` is present, its expression will be evaluated at the
 end of each loop iteration.
@@ -311,7 +324,7 @@ end of each loop iteration.
 ## `for`
 
 * *forStatement*:
-  + [*parameterList*] `for` *expression* [`next` *expression*] `do` `(` *parameter* `)` *statement*
+  + `for` *expression* [`next` *expression*] `do` `(` *parameter* `)` *statement*
 
 The first *expression* must be a range.
 *[parameter](#functions)* is initialized from each element of the
