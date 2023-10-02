@@ -1,7 +1,10 @@
-Disclaimer: These docs are unofficial and may be inaccurate or incomplete.
+Disclaimer:
+* These docs are unofficial and may be inaccurate or incomplete.
+* At the time of writing, Cpp2 is an *unstable experimental language*, see:
+  https://github.com/hsutter/cppfront#cppfront
 
 Note: Some examples are snipped/adapted from:
-https://github.com/hsutter/cppfront
+https://github.com/hsutter/cppfront/tree/main/regression-tests
 
 Note: Examples here use C++23 `std::println` instead of `cout`.
 If you don't have it, you can use this 1/2 parameter definition:
