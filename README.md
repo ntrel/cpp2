@@ -431,6 +431,7 @@ each command-line argument to the program.
 If a method doesn't exist when using method call syntax, and there is a
 function whose first parameter can take the type of the 'object'
 expression, then that function is called instead.
+
 ```c++
 main: () -> int = {
     // call C functions
@@ -588,6 +589,18 @@ With only one parameter `move this`, it is called to destroy the object:
 ```
 Objects are destroyed on last use, not end of scope.
 
+
+## Inheritance
+
+```c++
+base: type = {
+    operator=: (out this, i: int) = {}
+}
+
+derived: type = {
+    this: base = (5); // declare parent class & construct with `base(5)`
+}
+```
 
 ## Type Templates
 
