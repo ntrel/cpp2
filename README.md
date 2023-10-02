@@ -55,7 +55,13 @@ int main() {
     return x;
 }
 ```
-A C++2 declaration must not use C++1 declarations internally.
+A C++2 declaration cannot use C++1 declaration format internally:
+
+```c++
+f := () = {
+    int x; // error
+}
+```
 
 Note: `cppfront` has a `-p` switch to only allow pure C++2.
 
@@ -69,8 +75,8 @@ Both branches of an `if` statement must
 initialize a variable, or neither.
 ```c++
     x: int;
-    y := x; // error
-    if f() { x = 1; } // error
+    y := x; // error, x is uninitialized
+    if f() { x = 1; } // error, x must also be initialized in else branch
 ```
 
 
@@ -81,7 +87,7 @@ C++23 will support:
 ```c++
 import std;
 ```
-This is implicitly done.
+This will be implicitly done in Cpp2. For now common `std` headers are imported.
 
 
 # Types
@@ -479,8 +485,8 @@ an expression that captures the vector size at the start of the function call.
 
 ## Function Literals
 
-A literal is declared like a named function, but omitting the leading identifier.
-A literal can capture variables:
+A function literal is declared like a named function, but omitting the leading identifier.
+Variables can be captured:
 
 ```c++
     s: std::string = "Got: ";
@@ -494,7 +500,7 @@ A literal can capture variables:
 
 ## Template Functions
 
-A template function declaration can have template parameters:
+A [template](#templates) function declaration can have template parameters:
 
  * *functionTemplate*:
    + [*identifier*] `:` [*templateParameterList*] *parameterList* [`->` *returnSpec*] [`requires` *constExpression*]
