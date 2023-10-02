@@ -483,10 +483,13 @@ A literal is declared like a named function, but omitting the leading identifier
 A literal can capture variables:
 
 ```c++
-    y: std::string = "\n";
-    callback := :(x) = { std::print(x, y&$*); };
+    s: std::string = "Got: ";
+    f := :(x) = { std::println(s$, x); };
+    f(5);
+    f("str");
 ```
-`y&$*` means dereference the captured address of `y`.
+* `s$` means capture `s` by value.
+* `s&$*` can be used to dereference the captured address of `s`.
 
 
 ## Template Functions
