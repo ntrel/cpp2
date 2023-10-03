@@ -341,6 +341,10 @@ range. The parameter type is inferred.
 
 ```c++
     vec: std::vector<int> = (1, 2, 3);
+
+    for vec do (inout e)
+        e++;
+    assert(vec[0] == 2);
     for vec do (e)
         std::println(e);
 ```
