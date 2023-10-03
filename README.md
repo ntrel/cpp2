@@ -294,11 +294,13 @@ if the result is convertible to `bool`.
 
 # Statements
 
+A condition expression does not require parentheses in Cpp2, though when
+a statement immediately follows a condition, a *blockStatement* is required.
+
 ## `if`
 
 * *ifStatement*:
   + `if` [`constexpr`] *expression* *blockStatement* [`else` *blockStatement*]
-
 
 ## Parameterized Statement
 
