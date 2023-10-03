@@ -37,7 +37,7 @@ You will also need to manually `#include <cassert>` for `assert`.
 These are of the form:
 
  * *declaration*:
-   + *identifier* `:` [*type*] `=` *initializer*
+   + *identifier* `:` *type*? `=` *initializer*
 
 *type* can be omitted for type inference (though not at global scope).
 
@@ -300,7 +300,9 @@ a statement immediately follows a condition, a *blockStatement* is required.
 ## `if`
 
 * *ifStatement*:
-  + `if` [`constexpr`] *expression* *blockStatement* [`else` *blockStatement*]
+  + `if` `constexpr`? *expression* *blockStatement* *elseStatement*?
+* *elseStatement*:
+  + `else` *blockStatement*
 
 ## Parameterized Statement
 
@@ -318,7 +320,9 @@ defined only for the scope of *statement*.
 ## `while`
 
 * *whileStatement*:
-  + `while` *expression* [`next` *expression*] *blockStatement*
+  + `while` *expression* *nextClause*? *blockStatement*
+* *nextClause*:
+  + `next` *expression*
 
 If `next` is present, its expression will be evaluated at the
 end of each loop iteration.
@@ -332,7 +336,7 @@ end of each loop iteration.
 ## `for`
 
 * *forStatement*:
-  + `for` *expression* [`next` *expression*] `do` `(` *parameter* `)` *statement*
+  + `for` *expression* *nextClause*? `do` `(` *parameter* `)` *statement*
 
 The first *expression* must be a range.
 *[parameter](#functions)* is initialized from each element of the
@@ -369,13 +373,13 @@ The target of these statements can be a labelled loop.
 # Functions
 
  * *functionType*:
-   + `(` [*parameterTypes*] `)` `->` *returnType*
+   + `(` *parameterTypes*? `)` `->` *returnType*
 
 *parameterTypes* is a comma-separated list of types, which can be empty.
 E.g. `(int, float) -> bool`.
 
  * *functionDeclaration*:
-   + [*identifier*] `:` *parameterList* [`->` *returnSpec*] [[*contracts*](#contracts)]
+   + *identifier*? `:` *parameterList* [*returnSpec*](#returnspec)? [*contracts*](#contracts)?
  * *parameterList*:
    + `(` *parameter** `)`
 
@@ -383,9 +387,9 @@ Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
 
  * *parameter*:
-   + [*[parameterStorage](#parameter-passing)*] *identifier* `:` *type*. 
+   + *[parameterStorage](#parameter-passing)*? *identifier* `:` *type*.
 
-If `-> returnSpec` is missing, the function returns nothing (like Cpp1 `void`). 
+If *returnSpec* is missing, the function returns nothing (like Cpp1 `void`).
 The return type can be inferred from the initializer by using `-> _`.
 
 See also [Template Functions](#template-functions).
@@ -411,7 +415,7 @@ g: (i: int) -> int = i; // same
 ## returnSpec
 
  * *returnSpec*:
-   + [*returnStorage*] (*returnType* | *parameterList*)
+   + `->` *returnStorage*? (*returnType* | *parameterList*)
 
 When a return parameter is declared, it must be named. 
 Each parameter must be initialized in the function body.
@@ -432,7 +436,7 @@ int main() {
 ## `main`
 
 * *mainFunction*:
-  + `main` `:` `(` [`args`] `)` [`->` `int`] = *functionInitializer*
+  + `main` `:` `(` `args`? `)` (`->` `int`)? = *functionInitializer*
 
 If `args` is declared, it is a `std::vector<string_view>` containing
 each command-line argument to the program.
@@ -532,7 +536,7 @@ Variables can be captured:
 A [template](#templates) function declaration can have template parameters:
 
  * *functionTemplate*:
-   + [*identifier*] `:` [*templateParameterList*] *parameterList* [`->` *returnSpec*] [`requires` *constExpression*]
+   + *identifier*? `:` *templateParameterList*? *parameterList* *returnSpec*? *requiresClause*?
 
 E.g. `size:<T> () -> _ = sizeof(T);`
 
@@ -617,7 +621,7 @@ derived: type = {
 ## Type Templates
 
  * *typeTemplate*:
-   + [*identifier*] `:` [*templateParameterList*] `type` [`requires` *constExpression*]
+   + *identifier*? `:` *templateParameterList*? `type` *requiresClause*?
 
 
 # Templates
@@ -625,7 +629,7 @@ derived: type = {
  * *templateParameterList*:
    + `<` *templateParameters* `>`
  * *templateParameter*
-   + *identifier* [`:` `type`]
+   + *identifier* (`:` `type`)?
    + *identifier* `:` *type*
 
 The first parameter form accepts a type.
@@ -643,7 +647,12 @@ Note: This helps the parser to unambiguously parse an expression.
 An identifier argument would otherwise be parsed as a type, which would only
 be resolved as a value after semantic analysis.
 
-For now use `requires` instead of concepts:
+## Constraints
+
+ * *requiresClause*:
+   + `requires` *constExpression*
+
+For now use a constraint instead of an inline concept:
 ```c++
 f: <T> (_: T) requires std::regular<T> = { }
 ```
@@ -651,7 +660,7 @@ f: <T> (_: T) requires std::regular<T> = { }
 # Aliases
 
  * *alias*:
-   + *identifier* `:` [*templateParameterList*] [`type`] `==` *aliasInitializer*
+   + *identifier* `:` *templateParameterList*? `type`? `==` *aliasInitializer*
    + *identifier* `:` `namespace` `==` *aliasInitializer*
 
 ```c++
