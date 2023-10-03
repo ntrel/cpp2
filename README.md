@@ -22,6 +22,7 @@ You will also need to manually `#include <cassert>` for `assert`.
 
 * [Declarations](#declarations)
 * [Variables](#variables)
+* [Modules](#modules)
 * [Types](#types)
 * [Statements](#statements)
 * [Functions](#functions)
@@ -84,7 +85,11 @@ initialize a variable, or neither.
 ```
 
 
-# Imports
+# Modules
+
+Cpp2 files have the file extensions `.cpp2` and `.h2`.
+
+## Imports
 
 C++23 will support:
 
