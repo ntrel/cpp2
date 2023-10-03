@@ -46,19 +46,20 @@ These are of the form:
 ```
 A global declaration can be used before the line declaring it.
 
-## C++1
+## Mixing Cpp1 Declarations
 
-C++1 declarations can be mixed in the same file.
+Cpp1 declarations can be mixed in the same file.
 
 ```c++
+// Cpp2
 x := 42;
 
-// C++1
+// Cpp1
 int main() {
     return x;
 }
 ```
-A C++2 declaration cannot use C++1 declaration format internally:
+A Cpp2 declaration cannot use Cpp1 declaration format internally:
 
 ```c++
 f := () = {
@@ -66,7 +67,7 @@ f := () = {
 }
 ```
 
-Note: `cppfront` has a `-p` switch to only allow pure C++2.
+Note: `cppfront` has a `-p` switch to only allow pure Cpp2.
 
 
 # Variables
@@ -144,7 +145,7 @@ Initialization or assignment from null is an error:
 Instead of using null for `*T`, use `std::optional<*T>`.
 
 By default, `cppfront` also detects a runtime null dereference.
-For example when dereferencing a pointer created in C++1 code.
+For example when dereferencing a pointer created in Cpp1 code.
 
 ```c++
 int *ptr;
@@ -411,7 +412,7 @@ f: () -> (i: int, s: std::string) = {
 }
 
 int main() {
-    auto [a,b] = f(); // C++1 structured binding, no equivalent yet
+    auto [a,b] = f(); // Cpp1 structured binding, no equivalent yet
     assert(a == 10);
     assert(b == "hi");
 }
