@@ -164,11 +164,22 @@ Calling `f` above produces:
 
 # Expressions
 
+## Increment & Decrement
+
+Cpp2 does not have prefix operators for these.
+Unlike Cpp1, the result of postfix increment/decrement is the new value.
+
+```c++
+    i := 0;
+    assert(i++ == 1);
+```
+
 ## String Interpolation
 
 A bracketed expression with a trailing `$` inside a string will
 evaluate the expression, convert it to string and insert it into the
 string.
+
 ```c++
     a := 2;
     b: std::optional<int> = 2;
