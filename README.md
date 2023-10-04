@@ -6,7 +6,7 @@ Disclaimer:
 Note: Some examples are snipped/adapted from:
 https://github.com/hsutter/cppfront/tree/main/regression-tests
 
-Note: Examples here use C++23 `std::println` instead of `cout`.
+Note: Examples here use C++23 `std::println` instead of `std::cout`.
 If you don't have it, you can use this 1/2 parameter definition:
 
 ```c++
@@ -468,7 +468,7 @@ int main() {
 * *mainFunction*:
   + `main` `:` `(` `args`? `)` (`->` `int`)? `=` *functionInitializer*
 
-If `args` is declared, it is a `std::vector<string_view>` containing
+If `args` is declared, it is a `std::vector<std::string_view>` containing
 each command-line argument to the program.
 
 
