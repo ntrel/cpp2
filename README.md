@@ -398,16 +398,23 @@ The target of these statements can be a labelled loop.
 
 # Functions
 
+## Function Types
+
  * *functionType*:
-   + `(` *parameterTypes*? `)` `->` *returnType*
-
-*parameterTypes* is a comma-separated list of types, which can be empty.
-E.g. `(int, float) -> bool`.
-
- * *functionDeclaration*:
-   + *identifier*? `:` *parameterList* [*returnSpec*](#returnspec)? [*contracts*](#contracts)?
+   + *parameterList* *returnSpec*
  * *parameterList*:
    + `(` *parameter** `)`
+ * *returnSpec*:
+   + `->` (`forward` | `move`)? *type*
+   + `->` `_`
+   + `->` *parameterList*
+
+E.g. `(int, float) -> bool`.
+
+## Function Declarations
+
+ * *functionDeclaration*:
+   + *identifier*? `:` *parameterList* *returnSpec*? [*contracts*](#contracts)?
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier:
@@ -415,7 +422,7 @@ Each parameter must have an identifier:
  * *parameter*:
    + *[parameterStorage](#parameter-passing)*? *identifier* `:` *type*.
 
-If *returnSpec* is missing, the function returns nothing (like Cpp1 `void`).
+If *returnSpec* is missing, the function returns `void`.
 The return type can be inferred from the initializer by using `-> _`.
 
 See also [Template Functions](#template-functions).
@@ -438,10 +445,7 @@ f: (i: int) -> int = { return i; }
 g: (i: int) -> int = i; // same
 ```
 
-## returnSpec
-
- * *returnSpec*:
-   + `->` *returnStorage*? (*returnType* | *parameterList*)
+## Returning Multiple Values
 
 When a return parameter is declared, it must be named. 
 Each parameter must be initialized in the function body.
