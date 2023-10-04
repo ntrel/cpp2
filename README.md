@@ -193,6 +193,9 @@ By default, `cppfront` does runtime bound checks when indexing:
 
 ## `as`
 
+* *asExpression*:
+  + *expression* `as` *type* `=` *statement*
+
 `x as T` attempts:
 * type conversion (if the type of `x` implicitly converts to `T`)
 * customized conversion (using `operator as<T>`), useful for `std::optional`,
@@ -448,7 +451,7 @@ int main() {
 ## `main`
 
 * *mainFunction*:
-  + `main` `:` `(` `args`? `)` (`->` `int`)? = *functionInitializer*
+  + `main` `:` `(` `args`? `)` (`->` `int`)? `=` *functionInitializer*
 
 If `args` is declared, it is a `std::vector<string_view>` containing
 each command-line argument to the program.
