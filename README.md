@@ -280,16 +280,28 @@ if the result is convertible to `bool`.
 
 ## `inspect`
 
+* *inspectExpression*:
+  + `inspect` `constexpr`? *expression* (`->` *type*)? `{` *alternative** `}`
+* *alternative*:
+  + `is` (*type* | *expression*) `=` *statement*
+  + `as` *type* `=` *statement*
+
 ```c++
-    i := 15;
-    ...
-    s := inspect i -> std::string {
-        is (less_than(10)) = "i less than 10";
-        is (in(11,20)) = "i is between 11 and 20";
-        is _ = "i is out of our interest";
+v : std::any = ();
+gt10: (i: int) -> _ = i > 10;
+
+main: () = {
+    s: std::string;
+    s = inspect v -> std::string {
+        is 5 = "five";
+        is (gt10) = "more than 10";
+        is int = "an integer";
+        is _ = "not an integer";
     };
+    std::println(s);
+}
 ```
-<https://github.com/hsutter/cppfront/blob/main/regression-tests/pure2-inspect-expression-in-generic-function-multiple-types.cpp2>
+An inspect expression must have an `is _` case.
 
 
 # Statements
