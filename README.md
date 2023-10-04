@@ -406,7 +406,6 @@ The target of these statements can be a labelled loop.
    + `(` *parameter** `)`
  * *returnSpec*:
    + `->` (`forward` | `move`)? *type*
-   + `->` `_`
    + `->` *parameterList*
 
 E.g. `(int, float) -> bool`.
