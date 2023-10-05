@@ -404,6 +404,9 @@ The target of these statements can be a labelled loop.
    + *parameterList* *returnSpec*
  * *parameterList*:
    + `(` *parameter** `)`
+ * *parameter*:
+   + *[parameterStorage](#parameter-passing)*? *type*.
+   + *[parameterStorage](#parameter-passing)*? *identifier* `:` *type*.
  * *returnSpec*:
    + `->` (`forward` | `move`)? *type*
    + `->` *parameterList*
@@ -413,13 +416,10 @@ E.g. `(int, float) -> bool`.
 ## Function Declarations
 
  * *functionDeclaration*:
-   + *identifier*? `:` *parameterList* *returnSpec*? [*contracts*](#contracts)?
+   + *identifier*? `:` *parameterList* *returnSpec*? [*contracts*](#contracts)? = *functionInitializer*
 
 Function declarations extend the [declaration form](#declarations).
-Each parameter must have an identifier:
-
- * *parameter*:
-   + *[parameterStorage](#parameter-passing)*? *identifier* `:` *type*.
+Each parameter must have an identifier.
 
 If *returnSpec* is missing, the function returns `void`.
 The return type can be inferred from the initializer by using `-> _`.
