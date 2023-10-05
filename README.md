@@ -326,8 +326,8 @@ a statement immediately follows a condition, a *blockStatement* is required.
 ## `if`
 
 * *ifStatement*:
-  + `if` `constexpr`? *expression* *blockStatement* *elseStatement*?
-* *elseStatement*:
+  + `if` `constexpr`? *expression* *blockStatement* *elseClause*?
+* *elseClause*:
   + `else` *blockStatement*
 
 ## Parameterized Statement
