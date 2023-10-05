@@ -205,7 +205,7 @@ By default, `cppfront` does runtime bound checks when indexing:
 ## `as`
 
 * *asExpression*:
-  + *expression* `as` *type* `=` *statement*
+  + *expression* `as` *type*
 
 `x as T` attempts:
 * type conversion (if the type of `x` implicitly converts to `T`)
