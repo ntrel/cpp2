@@ -301,15 +301,13 @@ if the result is convertible to `bool`.
   + `as` *type* `=` *statement*
 
 ```c++
-v : std::any = ();
-gt10: (i: int) -> _ = i > 10;
+v : std::any = 12;
 
 main: () = {
     s: std::string;
     s = inspect v -> std::string {
         is 5 = "five";
-        is (gt10) = "more than 10";
-        is int = "an integer";
+        is int = "some other integer";
         is _ = "not an integer";
     };
     std::println(s);
