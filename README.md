@@ -329,6 +329,17 @@ a statement immediately follows a condition, a *blockStatement* is required.
   + `if` `constexpr`? *expression* *blockStatement* *elseClause*?
 * *elseClause*:
   + `else` *blockStatement*
+  + `else` *ifStatement*
+
+```c++
+    if c1 {
+        ...
+    } else if c2 {
+        ...
+    } else {
+        ...
+    }
+```
 
 ## Parameterized Statement
 
