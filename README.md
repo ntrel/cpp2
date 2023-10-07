@@ -359,6 +359,17 @@ end of each loop iteration.
     }
 ```
 
+## `do`
+
+* *doWhileStatement*:
+  + `do` *blockStatement* `while` *expression* *nextClause*? `;`
+
+```c++
+    (copy i := 0) do {
+        std::println(i);
+    } while i < 2 next i++;
+```
+
 ## `for`
 
 * *forStatement*:
