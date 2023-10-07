@@ -731,6 +731,4 @@ main: () = {
 }
 ```
 
-<style>
-    code, pre {background: #eaeaea;}
-</style>
+<link rel="stylesheet" href="style.css">
