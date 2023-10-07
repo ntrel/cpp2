@@ -115,7 +115,7 @@ Use:
 
 A pointer to `T` has type `*T`. Pointer arithmetic is illegal.
 
-### Postfix Operators
+### Postfix Pointer Operators
 
 Address of and dereference operators are postfix:
 ```c++
@@ -164,10 +164,15 @@ Calling `f` above produces:
 
 # Expressions
 
-## Increment & Decrement
+## Postfix Operators
 
-Cpp2 does not have prefix operators for these.
-Unlike Cpp1, the result of postfix increment/decrement is the new value.
+Besides the [pointer operators](#postfix-pointer-operators),
+Cpp2 also only uses postfix instead of prefix form for:
+* `++`
+* `--`
+* `~`
+
+Unlike Cpp1, the immediate result of postfix increment/decrement is the new value.
 
 ```c++
     i := 0;
