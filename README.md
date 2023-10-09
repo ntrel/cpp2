@@ -15,8 +15,6 @@ std: namespace = {
     println: (a, b) = std::cout << a << b << "\n";
 }
 ```
-You will also need to manually `#include <cassert>` for `assert`.
-
 
 # Contents
 
@@ -176,7 +174,7 @@ Unlike Cpp1, the immediate result of postfix increment/decrement is the new valu
 
 ```c++
     i := 0;
-    assert(i++ == 1);
+    [[assert: i++ == 1]]
 ```
 
 ## String Interpolation
@@ -189,7 +187,7 @@ string.
     a := 2;
     b: std::optional<int> = 2;
     s: std::string = "a^2 + b = (a * a + b.value())$\n";
-    assert(s == "a^2 + b = 6\n");
+    [[assert: s == "a^2 + b = 6\n"]]
 ```
 
 Note: `$` means 'capture' and is also used in [closures](#function-literals)
@@ -224,13 +222,13 @@ An exception is thrown if the expression is well-formed but the conversion is in
 ```c++
     c := 'A';
     i: int = c as int;
-    assert(i == 65);
+    [[assert: i == 65]]
 
     v := std::any(5);
     i = v as int;
 
     s := "hi" as std::string;
-    assert(s.length() == 2);
+    [[assert: s.length() == 2]]
 ```
 
 ## `is`
@@ -255,11 +253,11 @@ Test type of an expression - `x is T` attempts:
 
 ```c++
     i := 5;
-    assert(i is int);
-    assert(!(i is long));
+    [[assert: i is int]]
+    [[assert: !(i is long)]]
 
     v := std::any(i);
-    assert(v is int); // `v.operator is<int>()`
+    [[assert: v is int]] // `v.operator is<int>()`
 ```
 
 Test expression is a certain value - `x is v` attempts:
@@ -270,9 +268,9 @@ Test expression is a certain value - `x is v` attempts:
 
 ```c++
     i := 5;
-    assert(i is 5);
+    [[assert: i is 5]]
     v := std::any(i);
-    assert(v is 5);
+    [[assert: v is 5]]
 ```
 
 The last lowering allows to test a value by calling a predicate function:
@@ -344,6 +342,13 @@ a statement immediately follows a condition, a *blockStatement* is required.
     }
 ```
 
+## Assertions
+
+```c++
+    x := 1
+    [[assert: x == 1]]
+```
+
 ## Parameterized Statement
 
 * *parameterizedStatement*:
@@ -399,7 +404,7 @@ range. The parameter type is inferred.
 
     for vec do (inout e)
         e++;
-    assert(vec[0] == 2);
+    [[assert: vec[0] == 2]]
     for vec do (e)
         std::println(e);
 ```
@@ -482,8 +487,8 @@ f: () -> (i: int, s: std::string) = {
 
 int main() {
     auto [a,b] = f(); // Cpp1 structured binding, no equivalent yet
-    assert(a == 10);
-    assert(b == "hi");
+    [[assert: a == 10]]
+    [[assert: b == "hi"]]
 }
 ```
 
@@ -549,8 +554,8 @@ A variable can also be explictly moved. The move constructor of `z` will destroy
 ```c++
     x: std::string = "hi";
     z := (move x);
-    assert(z == "hi");
-    assert(x == "");
+    [[assert: z == "hi"]]
+    [[assert: x == ""]]
 ```
 
 ## Contracts
@@ -723,7 +728,7 @@ main: () = {
     v2 :== v; // variable alias
     //v2++; // error
     v++;
-    assert(v == v2);
+    [[assert: v == v2]]
 
     myfunc :== main; // function alias
     view: type == std::string_view;
