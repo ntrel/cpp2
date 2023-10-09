@@ -485,10 +485,11 @@ f: () -> (i: int, s: std::string) = {
     s = "hi";
 }
 
-int main() {
-    auto [a,b] = f(); // Cpp1 structured binding, no equivalent yet
-    [[assert: a == 10]]
-    [[assert: b == "hi"]]
+main: () =
+{
+    t := f();
+    [[assert: t.i == 5]]
+    [[assert: t.s == "hi"]]
 }
 ```
 
