@@ -352,7 +352,7 @@ a statement immediately follows a condition, a *blockStatement* is required.
 ## Parameterized Statement
 
 * *parameterizedStatement*:
-  + *parameterList* *statement*
+  + [*parameterList*](#functions) *statement*
 
 A parameterized statement declares one or more variables that are
 defined only for the scope of *statement*.
