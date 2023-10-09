@@ -181,6 +181,17 @@ See:
 * https://github.com/hsutter/cppfront#2015-lifetime-safety
 * https://www.reddit.com/r/cpp/comments/16ummo8/cppfront_autumn_update/k2r3fto/
 
+## Bounds Checks
+
+By default, `cppfront` does runtime bound checks when indexing:
+```c++
+    v: std::vector = (1, 2);
+    i := v[-1]; // aborts program
+
+    s: std::string = ("hi");
+    i = s[2]; // aborts program
+```
+
 # Expressions
 
 ## Postfix Operators
@@ -214,17 +225,6 @@ string.
 Note: `$` means 'capture' and is also used in [closures](#function-literals)
 and [postconditions](#contracts):
 <https://github.com/hsutter/cppfront/wiki/Design-note%3A-Capture>
-
-## Bounds Checks
-
-By default, `cppfront` does runtime bound checks when indexing:
-```c++
-    v: std::vector = (1, 2);
-    i := v[-1]; // aborts program
-
-    s: std::string = ("hi");
-    i = s[2]; // aborts program
-```
 
 ## `as`
 
