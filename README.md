@@ -1,7 +1,8 @@
 Disclaimer:
 * These docs are unofficial and may be inaccurate or incomplete.
 * At the time of writing, Cpp2 is an *unstable experimental language*, see:
-  https://github.com/hsutter/cppfront#cppfront
+  + https://github.com/hsutter/cppfront#cppfront
+  + https://github.com/hsutter/cppfront#wheres-the-documentation.
 
 Note: Some examples are snipped/adapted from:
 https://github.com/hsutter/cppfront/tree/main/regression-tests
