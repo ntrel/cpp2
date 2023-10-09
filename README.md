@@ -404,6 +404,7 @@ range. The parameter type is inferred.
 
     for vec do (inout e)
         e++;
+
     [[assert: vec[0] == 2]]
     for vec do (e)
         std::println(e);
@@ -446,7 +447,7 @@ E.g. `(int, float) -> bool`.
 ## Function Declarations
 
  * *functionDeclaration*:
-   + *identifier*? `:` *parameterList* *returnSpec*? [*contracts*](#contracts)? = *functionInitializer*
+   + *identifier*? `:` *parameterList* *returnSpec*? (`;` | [*contracts*](#contracts)? `=` *functionInitializer*)
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier.
@@ -463,14 +464,16 @@ See also [Template Functions](#template-functions).
    + (*expression* `;` | *statement*)
 
 A function is initialized from a statement or an expression.
-If the function has *returnSpec*, the expression form implies a `return` statement.
 
 ```c++
 d: (i: int) = { std::println(i); }
 e: (i: int) = std::println(i); // same
 ```
+
+If the function has *returnSpec*, the expression form implies a `return` statement.
+
 ```c++
-f: (i: int) -> int = { return i; }
+f: (i: int) -> int = return i;
 g: (i: int) -> int = i; // same
 ```
 
