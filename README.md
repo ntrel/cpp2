@@ -23,6 +23,7 @@ std: namespace = {
 * [Variables](#variables)
 * [Modules](#modules)
 * [Types](#types)
+* [Memory Safety](#memory-safety)
 * [Statements](#statements)
 * [Functions](#functions)
 * [Expressions](#expressions)
@@ -160,6 +161,25 @@ Calling `f` above produces:
 
     Null safety violation: dynamic null dereference attempt detected
 
+# Memory Safety
+
+Cpp2 will not enforce a memory-safety subset 100%. It will diagnose
+or prevent type, bounds, initialization, and common lifetime memory-safety
+violations. This is done by:
+
+* Runtime bounds checks
+* Requiring each [variable is initialized](#variables) before use in
+  every possible branch
+* *Not implemented yet:* Compile-time tracking of a set of 'points-to'
+  information for each pointer. When a pointed-to variable goes out of scope,
+  the set is updated to replace the variable with an invalid item.
+  Dereferencing a pointer with a set containing an invalid item is a
+  compile-time error.
+  See https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1179r1.pdf.
+
+See:
+* https://github.com/hsutter/cppfront#2015-lifetime-safety
+* https://www.reddit.com/r/cpp/comments/16ummo8/cppfront_autumn_update/k2r3fto/
 
 # Expressions
 
