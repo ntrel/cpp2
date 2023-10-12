@@ -322,10 +322,18 @@ if the result is convertible to `bool`.
 ## `inspect`
 
 * *inspectExpression*:
-  + `inspect` `constexpr`? *expression* (`->` *type*)? `{` *alternative** `}`
+  + `inspect` `constexpr`? *expression* (`->` *type*)? `{` *alternative*+ `}`
 * *alternative*:
-  + `is` (*type* | *expression*) `=` *statement*
-  + `as` *type* `=` *statement*
+  + *pattern* `=` *statement*
+  + *pattern* `{` *alternative*+ `}`
+* *pattern*:
+  + (*identifier* `:`)? `is` (*type* | *expression*)
+  + (*identifier* `:`)? `as` *type*
+  + (*identifier* `:`)? `if` *expression*
+  + *pattern* `||` *pattern*
+  + *pattern* `&&` *pattern*
+
+Only `is` alternatives without *identifier* are implemented ATM.
 
 ```c++
 v : std::any = 12;
