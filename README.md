@@ -271,17 +271,20 @@ when the result is convertible to `bool`.
 Test type of an expression - `x is T` attempts:
 * `true` when the type of `x` is `T`
 * `x.operator is<T>()`
+  + `x is void` means `x` is empty
 
 ```c++
     i := 5;
     [[assert: i is int]]
     [[assert: !(i is long)]]
 
-    v := std::any(i);
+    v := std::any();
+    [[assert: v is void]] // `v.operator is<void>()`
+    v = 5;
     [[assert: v is int]] // `v.operator is<int>()`
 ```
 
-Test expression is a certain value - `x is v` attempts:
+Test expression has a particular value - `x is v` attempts:
 * `x.operator is(v)`
 * `x == v`
 * `x as V == v` where `V` is the type of `v`
