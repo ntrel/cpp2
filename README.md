@@ -479,12 +479,14 @@ E.g. `(int, float) -> bool`.
 ## Function Declarations
 
  * *functionDeclaration*:
-   + *identifier*? `:` *parameterList* *returnSpec*? (`;` | [*contracts*](#contracts)? `=` *functionInitializer*)
+   + *identifier*? `:` *parameterList* *returnSpec*? `;`
+   + *identifier*? `:` *parameterList* *returnSpec*? [*contracts*](#contracts)? `=` *functionInitializer*
+   + *identifier*? `:` *parameterList* *expression*
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier.
 
-If *returnSpec* is missing, the function returns `void`.
+If *returnSpec* is missing with the first two forms, the function returns `void`.
 The return type can be inferred from the initializer by using `-> _`.
 
 See also [Template Functions](#template-functions).
@@ -498,16 +500,23 @@ See also [Template Functions](#template-functions).
 A function is initialized from a statement or an expression.
 
 ```c++
-d: (i: int) = { std::println(i); }
-e: (i: int) = std::println(i); // same
+d: (i: int) = std::println(i);
+e: (i: int) = { std::println(i); } // same
 ```
 
-If the function has *returnSpec*, the expression form implies a `return` statement.
+If the function has a *returnSpec*, the expression form implies a `return` statement.
 
 ```c++
 f: (i: int) -> int = return i;
 g: (i: int) -> int = i; // same
 ```
+
+Lastly, `-> _ =` together can be omitted:
+```c++
+h: (i: int) i; // same as f and g
+```
+This form is useful for [lambda functions](#function-literals).
+
 
 ## Returning Multiple Values
 
@@ -640,8 +649,8 @@ corresponding type parameter.
 A template function parameter can also be just `identifier`.
 
 ```c++
-f: (x: _) = x;
-g: (x) = x; // same
+f: (x: _) = {}
+g: (x) = {} // same
 ```
 
 
