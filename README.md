@@ -481,7 +481,7 @@ E.g. `(int, float) -> bool`.
  * *functionDeclaration*:
    + *identifier*? `:` *parameterList* *returnSpec*? `;`
    + *identifier*? `:` *parameterList* *returnSpec*? [*contracts*](#contracts)? `=` *functionInitializer*
-   + *identifier*? `:` *parameterList* *expression*
+   + *identifier*? `:` *parameterList* *expression* `;`
 
 Function declarations extend the [declaration form](#declarations).
 Each parameter must have an identifier.
@@ -492,7 +492,7 @@ The return type can be inferred from the initializer by using `-> _`.
 See also [Template Functions](#template-functions).
 
 
-## functionInitializer
+## Function Bodies
 
  * *functionInitializer*:
    + (*expression* `;` | *statement*)
