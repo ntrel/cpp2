@@ -63,7 +63,8 @@ int main() {
 A Cpp2 declaration cannot use Cpp1 declaration format internally:
 
 ```c++
-f := () = {
+// declare a function
+f: () = {
     int x; // error
 }
 ```
@@ -307,8 +308,7 @@ test_int: (i: int) = {
     }
 }
 
-main: () = 
-{
+main: () = {
     test_int(5);
     test_int(15);
     test_int(25);
@@ -520,8 +520,7 @@ f: () -> (i: int, s: std::string) = {
     s = "hi";
 }
 
-main: () =
-{
+main: () = {
     t := f();
     [[assert: t.i == 5]]
     [[assert: t.s == "hi"]]
