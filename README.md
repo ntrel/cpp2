@@ -266,8 +266,9 @@ An exception is thrown if the expression is well-formed but the conversion is in
 Test a type `T` matches another type - `T is Target` is `true` when `T` is the
 same type as `Target`.
 
-Test a template predicate with a type - `T is target` attempts `target<T>`
-when the result is convertible to `bool`.
+Test an expression against a template - `T is Template` attempts:
+* `true` if `T` is an instance of `Template`.
+* `Template<T>` if the result is convertible to `bool`.
 
 ### Expression Tests
 
@@ -318,8 +319,9 @@ main: () = {
 ```
 Note that `pred` is not a type identifier so it must be parenthesized.
 
-Test a template predicate with a compile-time value - `x is Template` tests `Template<(x)>`
-if the result is convertible to `bool`.
+Test an expression against a template - `(x) is Template` attempts:
+* `true` if the type of `x` is an instance of `Template`.
+* `Template<(x)>` if the result is convertible to `bool`.
 
 ## `inspect`
 
