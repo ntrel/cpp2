@@ -261,7 +261,9 @@ An exception is thrown if the expression is well-formed but the conversion is in
 
 ### Type Tests
 
-Test a type matches another type - `T is Target` is `true` when `T` is the
+*Not implemented yet*.
+
+Test a type `T` matches another type - `T is Target` is `true` when `T` is the
 same type as `Target`.
 
 Test a template predicate with a type - `T is target` attempts `target<T>`
