@@ -244,6 +244,22 @@ Note: `$` means 'capture' and is also used in [closures](#function-literals)
 and [postconditions](#contracts):
 <https://github.com/hsutter/cppfront/wiki/Design-note%3A-Capture>
 
+## Anonymous Variables
+
+* *anonymousVariable*:
+  + `:` *type*? `=` *expression*
+
+```c++
+f: (i: int)   = { std::println("int"); }
+f: (i: short) = { std::println("short"); }
+
+main: () = {
+    f(5);          // int
+    f(:short = 5); // short
+}
+```
+The last statement is equivalent to `tmp: short = 5; f(tmp);`.
+
 ## `as`
 
 * *asExpression*:
