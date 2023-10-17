@@ -77,6 +77,7 @@ Note: `cppfront` has a `-p` switch to only allow pure Cpp2.
 ## Uninitialized Variables
 
 Use of an uninitialized variable is statically detected.
+Initialization can be deferred to a later statement.
 Both branches of an `if` statement must
 initialize a variable, or neither.
 ```c++
@@ -87,6 +88,7 @@ initialize a variable, or neither.
     } else {
         x = 0; // initialization required here too, otherwise an error
     }
+    x = 2; // assignment
 ```
 
 ## Runtime Constants
@@ -94,9 +96,9 @@ initialize a variable, or neither.
 ```c++
     x: const int;
 ```
-Note that `x` does not need to be initialized immediately, it can be done
-by a later statement. This is particularly useful when using `if` branches
-to initialize the constant.
+Note that `x` does not need to be initialized immediately, it can deferred.
+This is particularly useful when using `if` branches to initialize the
+constant.
 
 <https://github.com/ntrel/cppfront/wiki/Design-note:-const-objects-by-default>
 
