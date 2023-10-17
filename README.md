@@ -272,23 +272,28 @@ Test an expression against a template - `T is Template` attempts:
 
 ### Expression Tests
 
-Test type of an expression - `x is T` attempts:
+Note: Testing an identifier expression needs to use parentheses to
+disambiguate from a type identifier test. Other expressions do not
+need parentheses.
+
+Test type of an expression - `(x) is T` attempts:
 * `true` when the type of `x` is `T`
 * `x.operator is<T>()`
-  + `x is void` means `x` is empty
+  + `(x) is void` means `x` is empty
 
 ```c++
+    [[assert: 5 is int]]
     i := 5;
-    [[assert: i is int]]
-    [[assert: !(i is long)]]
+    [[assert: (i) is int]]
+    [[assert: !((i) is long)]]
 
     v := std::any();
-    [[assert: v is void]] // `v.operator is<void>()`
+    [[assert: (v) is void]] // `v.operator is<void>()`
     v = 5;
-    [[assert: v is int]] // `v.operator is<int>()`
+    [[assert: (v) is int]] // `v.operator is<int>()`
 ```
 
-Test expression has a particular value - `x is v` attempts:
+Test expression has a particular value - `(x) is v` attempts:
 * `x.operator is(v)`
 * `x == v`
 * `x as V == v` where `V` is the type of `v`
@@ -296,9 +301,9 @@ Test expression has a particular value - `x is v` attempts:
 
 ```c++
     i := 5;
-    [[assert: i is 5]]
+    [[assert: (i) is 5]]
     v := std::any(i);
-    [[assert: v is 5]]
+    [[assert: (v) is 5]]
 ```
 
 The last lowering allows to test a value by calling a predicate function:
@@ -306,7 +311,7 @@ The last lowering allows to test a value by calling a predicate function:
 pred: (x: int) -> bool = x < 20;
 
 test_int: (i: int) = {
-    if i is (pred) {
+    if (i) is (pred) {
         std::println("(i)$ is less than 20");
     }
 }
