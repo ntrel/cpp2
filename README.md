@@ -53,11 +53,11 @@ Cpp1 declarations can be mixed in the same file.
 
 ```c++
 // Cpp2
-x := 42;
+x: int = 42;
 
 // Cpp1
 int main() {
-    return x;
+    return x; // use a Cpp2 definition
 }
 ```
 A Cpp2 declaration cannot use Cpp1 declaration format internally:
