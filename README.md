@@ -82,8 +82,23 @@ initialize a variable, or neither.
 ```c++
     x: int;
     y := x; // error, x is uninitialized
-    if f() { x = 1; } // error, x must also be initialized in else branch
+    if f() {
+        x = 1; // initialization, not assignment
+    } else {
+        x = 0; // initialization required here too, otherwise an error
+    }
 ```
+
+## Runtime Constants
+
+```c++
+    x: const int;
+```
+Note that `x` does not need to be initialized immediately, it can be done
+by a later statement. This is particularly useful when using `if` branches
+to initialize the constant.
+
+<https://github.com/ntrel/cppfront/wiki/Design-note:-const-objects-by-default>
 
 
 # Modules
