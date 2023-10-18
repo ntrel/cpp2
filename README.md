@@ -95,6 +95,11 @@ initialize a variable, or neither.
 
 ```c++
     x: const int;
+    x = 5; // initialization
+    x = 6; // error
+
+    y: int = 7;
+    z: const _ = x; // z is a `const int`
 ```
 Note that `x` does not need to be initialized immediately, it can deferred.
 This is particularly useful when using `if` branches to initialize the
