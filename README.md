@@ -535,7 +535,7 @@ The target of these statements can be a labelled loop.
    + `(` *parameter** `)`
  * *parameter*:
    + *[parameterStorage](#parameter-passing)*? *type*.
-   + *[parameterStorage](#parameter-passing)*? *identifier* `:` *type*.
+   + *[parameterStorage](#parameter-passing)*? *identifier* `...`? `:` *type*.
  * *returnSpec*:
    + `->` (`forward` | `move`)? *type*
    + `->` *parameterList*
@@ -718,6 +718,19 @@ A template function parameter can also be just `identifier`.
 f: (x: _) = {}
 g: (x) = {} // same
 ```
+### Variadic Template Functions
+
+```c++
+print: (a0) = std::print(a0);
+
+print: (a0, args...) = {
+    print(a0);
+    print(", ");
+    print(args...);
+}
+
+main: () = print(1, 2, 3);
+```
 
 
 # User-Defined Types
@@ -798,7 +811,7 @@ derived: type = {
  * *templateParameterList*:
    + `<` *templateParameters* `>`
  * *templateParameter*
-   + *identifier* (`:` `type`)?
+   + *identifier* `...`? (`:` `type`)?
    + *identifier* `:` *type*
 
 The first parameter form accepts a type.
