@@ -110,7 +110,9 @@ constant.
 
 ## Implicit Move on Last Use
 
-A variable is implicitly moved on its last use.
+A variable is implicitly moved on its last use when the use site syntax
+may accept an rvalue. This includes passing an argument to a function,
+but not an assignment to the last use of a variable.
 ```c++
 inc: (inout v: int) = v++;
 
