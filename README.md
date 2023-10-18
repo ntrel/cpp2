@@ -102,6 +102,20 @@ constant.
 
 <https://github.com/ntrel/cppfront/wiki/Design-note:-const-objects-by-default>
 
+## Implicit Move on Last Use
+
+A variable is implicitly moved on its last use.
+```c++
+inc: (inout v: int) = v++;
+
+test2: () = {
+    v := 42;
+    inc(v);     // OK, lvalue
+    inc(v);     // error, cannot pass rvalue
+}
+```
+This can be suppressed by adding a statement `_ = v;`.
+
 
 # Modules
 
