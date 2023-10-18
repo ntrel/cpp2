@@ -122,7 +122,7 @@ test2: () = {
     inc(v);     // error, cannot pass rvalue
 }
 ```
-This can be suppressed by adding a statement `_ = v;`.
+This can be suppressed by adding a statement `_ = v;` after the final `inc` call.
 
 
 # Modules
@@ -416,6 +416,17 @@ main: () = {
 ```
 An inspect expression must have an `is _` case.
 
+## Move Expressions
+A variable can be explictly moved. The move constructor of `z` will destroy `x`:
+
+```c++
+    x: std::string = "hi";
+    z := (move x);
+    [[assert: z == "hi"]]
+    [[assert: x == ""]]
+```
+See also [Implicit Move on Last Use](#implicit-move-on-last-use).
+
 
 # Statements
 
@@ -658,15 +669,6 @@ main: () -> int = {
 }
 ```
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-parameter-passing.cpp2>
-
-A variable can also be explictly moved. The move constructor of `z` will destroy `x`:
-
-```c++
-    x: std::string = "hi";
-    z := (move x);
-    [[assert: z == "hi"]]
-    [[assert: x == ""]]
-```
 
 ## Contracts
 
