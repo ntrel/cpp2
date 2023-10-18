@@ -149,7 +149,7 @@ A pointer to `T` has type `*T`. Pointer arithmetic is illegal.
 
 ### Postfix Pointer Operators
 
-Address of and dereference operators are postfix:
+Address of and dereference operators [are postfix](#postfix-operators):
 ```c++
     x: int = 42;
     p: *int = x&;
@@ -240,6 +240,8 @@ Unlike Cpp1, the immediate result of postfix increment/decrement is the new valu
     i := 0;
     [[assert: i++ == 1]]
 ```
+<https://github.com/hsutter/cppfront/wiki/Design-note:-Postfix-operators>
+
 
 ## String Interpolation
 
