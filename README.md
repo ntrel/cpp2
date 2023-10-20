@@ -77,7 +77,9 @@ Note: `cppfront` has a `-p` switch to only allow pure Cpp2.
 ## Uninitialized Variables
 
 Use of an uninitialized variable is statically detected.
-Initialization can be deferred to a later statement.
+
+When the variable declaration specifies the type, initialization can be
+deferred to a later statement.
 Both branches of an `if` statement must
 initialize a variable, or neither.
 ```c++
