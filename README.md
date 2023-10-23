@@ -397,7 +397,7 @@ Test an expression against a template - `(x) is Template` attempts:
 * *alt-name*:
   + *identifier* `:`
 * *pattern*:
-  + `is` (*type* | *expression*)
+  + `is` (*type* | *expression* | *template*)
   + `as` *type*
   + `if` *expression*
   + *pattern* `||` *pattern*
@@ -418,7 +418,7 @@ main: () = {
     std::println(s);
 }
 ```
-An inspect expression must have an `is _` case.
+An `inspect` expression must have an `is _` case.
 
 *Unimplemented:* an `inspect` statement has the same grammar except
 there must be no `->` *type* after the *expression*.
