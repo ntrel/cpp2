@@ -390,18 +390,20 @@ Test an expression against a template - `(x) is Template` attempts:
 ## `inspect`
 
 * *inspectExpression*:
-  + `inspect` `constexpr`? *expression* (`->` *type*)? `{` *alternative*+ `}`
+  + `inspect` `constexpr`? *expression* `->` *type* `{` *alternative*+ `}`
 * *alternative*:
-  + *pattern* `=` *statement*
-  + *pattern* `{` *alternative*+ `}`
+  + *alt-name*? *pattern* `=` *statement*
+  + *alt-name*? *pattern* `{` *alternative*+ `}`
+* *alt-name*:
+  + *identifier* `:`
 * *pattern*:
-  + (*identifier* `:`)? `is` (*type* | *expression*)
-  + (*identifier* `:`)? `as` *type*
-  + (*identifier* `:`)? `if` *expression*
+  + `is` (*type* | *expression*)
+  + `as` *type*
+  + `if` *expression*
   + *pattern* `||` *pattern*
   + *pattern* `&&` *pattern*
 
-Only `is` alternatives without *identifier* are implemented ATM.
+Only `is` alternatives without *alt-name* are implemented ATM.
 
 ```c++
 v : std::any = 12;
