@@ -418,6 +418,9 @@ main: () = {
 ```
 An inspect expression must have an `is _` case.
 
+<https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2392r2.pdf>
+
+
 ## Move Expressions
 A variable can be explictly moved. The move constructor of `z` will destroy `x`:
 
