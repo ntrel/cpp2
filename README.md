@@ -286,6 +286,27 @@ main: () = {
 ```
 The last statement is equivalent to `tmp: short = 5; f(tmp);`.
 
+
+## Identifier Expressions
+
+* *identifierExpression*:
+  + *identifier*
+  + *identifier* `<` *expressions* `>`
+  + *expression* `::` *identifierExpression*
+
+### Required Parentheses
+
+Whenever any kind of identifier expression is used where it could parse
+as a type, it must be enclosed in parentheses:
+
+* `id1` - type
+* `(id1)` - expression
+
+An identifier expression does not need parentheses where a type would
+not be valid. Other expressions never need parentheses as they could
+not be parsed as a valid type, e.g. literals, unary expressions etc.
+
+
 ## `as`
 
 * *asExpression*:
