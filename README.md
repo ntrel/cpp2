@@ -326,7 +326,7 @@ Test a type `T` matches another type - `T is Target` attempts:
 * `true` when `T` is the same type as `Target`.
 * `true` if `T` is a type that [inherits](#inheritance) from `Target`.
 
-Test an expression against a template - `T is Template` attempts:
+Test a type against a template - `T is Template` attempts:
 * `true` if `T` is an instance of `Template`.
 * `Template<T>` if the result is convertible to `bool`.
 
