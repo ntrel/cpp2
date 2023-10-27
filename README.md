@@ -322,8 +322,9 @@ An exception is thrown if the expression is well-formed but the conversion is in
 
 *Not implemented yet*.
 
-Test a type `T` matches another type - `T is Target` is `true` when `T` is the
-same type as `Target`.
+Test a type `T` matches another type - `T is Target` attempts:
+* `true` when `T` is the same type as `Target`.
+* `true` if `T` is a type that [inherits](#inheritance) from `Target`.
 
 Test an expression against a template - `T is Template` attempts:
 * `true` if `T` is an instance of `Template`.
