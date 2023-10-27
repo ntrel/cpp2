@@ -296,7 +296,7 @@ The last statement is equivalent to `tmp: short = 5; f(tmp);`.
 * customized conversion (using `operator as<T>`), useful for `std::optional`,
   `std::variant` etc.
 * construction of `T(x)`
-* dynamic casting
+* dynamic casting (equivalent to Cpp1 `dynamic_cast<T>(x)` when `x` is a base class of `T`)
 
 An exception is thrown if the expression is well-formed but the conversion is invalid.
 
