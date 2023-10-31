@@ -741,7 +741,7 @@ A [template](#templates) function declaration can have template parameters:
  * *functionTemplate*:
    + *identifier*? `:` *templateParameterList*? *parameterList* *returnSpec*? *requiresClause*?
 
-E.g. `size:<T> () -> _ = sizeof(T);`
+E.g. `size: <T> (v: T) -> _ = v.length();`
 
 When a function parameter type is `_`, this implies a template with a
 corresponding type parameter.
@@ -862,6 +862,15 @@ constexpr int n = 5;
 Note: This helps the parser to unambiguously parse an expression.
 An identifier argument would otherwise be parsed as a type, which would only
 be resolved as a value after semantic analysis.
+
+## Constant Templates
+
+A variable template declared with `==` generates a Cpp1 `constexpr` value:
+```c++
+size: <T> int == sizeof(T);
+...
+    [[assert: size<char> == 1]]
+```
 
 ## Constraints
 
