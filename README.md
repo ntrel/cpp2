@@ -110,6 +110,13 @@ constant.
 
 <https://github.com/ntrel/cppfront/wiki/Design-note:-const-objects-by-default>
 
+## Compile-Time Constants
+
+A compile-time constant is declared using `==` rather than `=`:
+```c++
+n: int == 5; // Cpp1 constexpr
+```
+
 ## Implicit Move on Last Use
 
 A variable is implicitly moved on its last use when the use site syntax
@@ -855,7 +862,7 @@ To use a non-type identifier as a template parameter,
 enclose it in parentheses:
 ```c++
 f: <i: int> () -> _ = i;
-constexpr int n = 5;
+n: int == 5;
 ...
     std::println(f<(n)>());
 ```
@@ -865,9 +872,9 @@ be resolved as a value after semantic analysis.
 
 ## Constant Templates
 
-A variable template declared with `==` generates a Cpp1 `constexpr` value:
+A [compile-time constant](#compile-time-constants) can be a template:
 ```c++
-size: <T> int == sizeof(T);
+size: <T> size_t == sizeof(T);
 ...
     [[assert: size<char> == 1]]
 ```
