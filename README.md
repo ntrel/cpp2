@@ -868,10 +868,20 @@ be resolved as a value after semantic analysis.
  * *requiresClause*:
    + `requires` *constExpression*
 
-For now use a constraint instead of an inline concept:
+For now use a constraint instead of a concept template parameter:
 ```c++
 f: <T> (_: T) requires std::regular<T> = { }
 ```
+
+## Concepts
+
+* *concept*:
+  + *identifier* `:` *templateParameterList* `concept` *requiresClause*? `=` *constExpression* `;`
+
+```c++
+arithmetic: <T> concept = std::integral<T> || std::floating_point<T>;
+```
+
 
 # Aliases
 
