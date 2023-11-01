@@ -353,9 +353,7 @@ Test a type against a template - `T is Template` attempts:
 
 ### Expression Tests
 
-Note: Testing an identifier expression needs to use parentheses to
-disambiguate from a type identifier test. Other expressions do not
-need parentheses.
+Note: Testing an identifier expression [needs to use parentheses](#required-parentheses).
 
 Test type of an expression - `(x) is T` attempts:
 * `true` when the type of `x` is `T`
@@ -403,7 +401,7 @@ main: () = {
     test_int(25);
 }
 ```
-Note that `pred` is not a type identifier so it must be parenthesized.
+Note that `pred` is not a type identifier so it [must be parenthesized](#required-parentheses).
 
 Test an expression against a template - `(x) is Template` attempts:
 * `true` if the type of `x` is an instance of `Template`.
@@ -851,8 +849,8 @@ derived: type = {
 The first parameter form accepts a type.
 
 The second parameter form accepts a value.
-To use a non-type identifier as a template parameter,
-enclose it in parentheses:
+To use a constant identifier as a template parameter,
+[enclose it in parentheses](#required-parentheses):
 ```c++
 f: <i: int> () -> _ = i;
 n: int == 5;
@@ -861,9 +859,6 @@ n: int == 5;
 ```
 `n` is a [constant alias](#aliases).
 
-Note: This helps the parser to unambiguously parse an expression.
-An identifier argument would otherwise be parsed as a type, which would only
-be resolved as a value after semantic analysis.
 
 ## Constraints
 
