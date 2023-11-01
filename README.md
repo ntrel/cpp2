@@ -110,13 +110,6 @@ constant.
 
 <https://github.com/ntrel/cppfront/wiki/Design-note:-const-objects-by-default>
 
-## Compile-Time Constants
-
-A compile-time constant is declared using `==` rather than `=`:
-```c++
-n: int == 5; // Cpp1 constexpr
-```
-
 ## Implicit Move on Last Use
 
 A variable is implicitly moved on its last use when the use site syntax
@@ -866,18 +859,11 @@ n: int == 5;
 ...
     std::println(f<(n)>());
 ```
+`n` is a [constant alias](#aliases).
+
 Note: This helps the parser to unambiguously parse an expression.
 An identifier argument would otherwise be parsed as a type, which would only
 be resolved as a value after semantic analysis.
-
-## Constant Templates
-
-A [compile-time constant](#compile-time-constants) can be a template:
-```c++
-size: <T> size_t == sizeof(T);
-...
-    [[assert: size<char> == 1]]
-```
 
 ## Constraints
 
@@ -898,20 +884,27 @@ f: <T> (_: T) requires std::regular<T> = { }
 arithmetic: <T> concept = std::integral<T> || std::floating_point<T>;
 ```
 
-
 # Aliases
 
  * *alias*:
-   + *identifier* `:` *templateParameterList*? `type`? `==` *aliasInitializer*
-   + *identifier* `:` `namespace` `==` *aliasInitializer*
+   + *identifier* `:` *templateParameterList*? *type*? `==` *constExpression*
+   + *identifier* `:` *templateParameterList*? `type` `==` *type*
+   + *identifier* `:` `namespace` `==` [*identifierExpression*](#identifier-expressions)
+
+The forms above are equivalent to the following Cpp1 declarations:
+* `constexpr` variable
+* `using` type alias
+* `namespace` alias
 
 ```c++
+size: <T> size_t == sizeof(T);
+
 main: () = {
+    // constant aliases
+    [[assert: size<char> == 1]]
     v := 5;
-    v2 :== v; // variable alias
-    //v2++; // error
-    v++;
-    [[assert: v == v2]]
+    n :== v; // error, cannot read `v` at compile-time
+    n :== 6; // OK
 
     myfunc :== main; // function alias
     view: type == std::string_view;
