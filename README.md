@@ -865,10 +865,12 @@ n: int == 5;
  * *requiresClause*:
    + `requires` *constExpression*
 
-For now use a constraint instead of a concept template parameter:
 ```c++
-f: <T> (_: T) requires std::regular<T> = { }
+defaultValue: <T> () -> T requires std::regular<T> = { v: T = (); return v; }
+...
+    [[assert: defaultValue<int>() == 0]]
 ```
+Note: Using an inline concept for a type parameter is not supported yet.
 
 ## Concepts
 
@@ -877,6 +879,9 @@ f: <T> (_: T) requires std::regular<T> = { }
 
 ```c++
 arithmetic: <T> concept = std::integral<T> || std::floating_point<T>;
+...
+    [[assert: arithmetic<i32>]]
+    [[assert: arithmetic<float>]]
 ```
 
 # Aliases
