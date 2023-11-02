@@ -886,27 +886,36 @@ arithmetic: <T> concept = std::integral<T> || std::floating_point<T>;
 
 # Aliases
 
+Aliases are defined using `==` rather than `=`.
+
  * *alias*:
    + *identifier* `:` *templateParameterList*? *type*? `==` *constExpression*
+   + *identifier* `:` *templateParameterList*? *functionType* `==` *functionInitializer*
    + *identifier* `:` *templateParameterList*? `type` `==` *type*
    + *identifier* `:` `namespace` `==` [*identifierExpression*](#identifier-expressions)
 
 The forms above are equivalent to the following Cpp1 declarations:
 * `constexpr` variable
+* `constexpr` function
 * `using` type alias
 * `namespace` alias
 
 ```c++
+// constant template
 size: <T> size_t == sizeof(T);
+// compile-time function
+init: <T> () -> T == ();
 
 main: () = {
-    // constant aliases
-    [[assert: size<char> == 1]]
-    v := 5;
-    n :== v; // error, cannot read `v` at compile-time
-    n :== 6; // OK
+    static_assert(size<char> == 1);
 
-    myfunc :== main; // function alias
+    // constant aliases
+    v := 5;
+    //n :== v; // error, cannot read `v` at compile-time
+    n :== 6; // OK
+    myfunc :== main;
+
+    static_assert(init<int>() == 0);
     view: type == std::string_view;
     N4: namespace == std::literals;
 }
