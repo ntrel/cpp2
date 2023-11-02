@@ -1,5 +1,6 @@
 Disclaimer:
 * These docs are unofficial and may be inaccurate or incomplete.
+  + Please file bugs at https://github.com/ntrel/cpp2/issues.
 * At the time of writing, Cpp2 is an *unstable experimental language*, see:
   + https://github.com/hsutter/cppfront#cppfront
   + https://github.com/hsutter/cppfront#wheres-the-documentation.
