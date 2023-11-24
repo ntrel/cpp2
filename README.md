@@ -1,3 +1,5 @@
+# Cpp2 Language Overview
+
 Disclaimer:
 * These docs are unofficial and may be inaccurate or incomplete.
   + Please file bugs at https://github.com/ntrel/cpp2/issues.
@@ -502,6 +504,8 @@ defined only for the scope of *statement*.
 // tmp no longer in scope
 ```
 
+Valid *[parameterStorage](#parameter-passing)* keywords are `in`, `copy`, `inout`.
+
 ## `while`
 
 * *whileStatement*:
@@ -574,7 +578,8 @@ The target of these statements can be a labelled loop.
  * *functionType*:
    + *parameterList* *returnSpec*
  * *parameterList*:
-   + `(` *parameter** `)`
+   + `(` *parameter*? `)`
+   + `(` *parameter* (`,` *parameter*)+ `)`
  * *parameter*:
    + *[parameterStorage](#parameter-passing)*? *type*.
    + *[parameterStorage](#parameter-passing)*? *identifier* `...`? `:` *type*.
