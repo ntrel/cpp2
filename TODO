@@ -1,4 +1,5 @@
 nodiscard
+flag_safe_comparisons
 chained comparisons
 meta functions
 other unnamed declarations (not just anon variables)
