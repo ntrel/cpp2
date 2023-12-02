@@ -631,10 +631,11 @@ h: (i: int) i; // same as f and g
 This form is useful for [lambda functions](#function-literals).
 
 
-## Returning Multiple Values
+## Named Return Values
 
-When a return parameter is declared, it must be named. 
-Each parameter must be initialized in the function body.
+When a function returns a *parameterList*, each parameter must be named.
+A function with multiple named return parameters returns a struct with
+a member for each parameter.
 
 ```c++
 f: () -> (i: int, s: std::string) = {
@@ -646,6 +647,19 @@ main: () = {
     t := f();
     assert(t.i == 5);
     assert(t.s == "hi");
+}
+```
+
+* Unless a return parameter has a default value, it must be initialized in
+  the function body.
+* When only one return parameter is declared, the caller does not
+  use member syntax to access the result.
+
+```c++
+f: () -> (ret: int = 42) = {}
+
+main: () = {
+    assert(f() == 42);
 }
 ```
 
@@ -721,6 +735,15 @@ The postcondition compares the vector size at the end of the function call with
 an expression that captures the vector size at the start of the function call.
 
 <https://github.com/hsutter/cppfront/blob/main/regression-tests/mixed-postexpression-with-capture.cpp2>
+
+A single [named return](#named-return-values) is useful to refer to a
+result in a postcondition:
+```c++
+f: () -> (ret: int)
+    post(ret > 0) = {
+    ret = 42;
+}
+```
 
 ## Function Literals
 
