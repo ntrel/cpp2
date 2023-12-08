@@ -11,12 +11,11 @@ Note: Some examples are snipped/adapted from:
 https://github.com/hsutter/cppfront/tree/main/regression-tests
 
 Note: Examples here use C++23 `std::println` instead of `std::cout`.
-If you don't have it, you can use this 1/2 parameter definition:
+If you don't have it, you can use this definition:
 
 ```c++
 std: namespace = {
-    println: (a) = std::cout << a << "\n";
-    println: (a, b) = std::cout << a << b << "\n";
+    println: (args...) = (std::cout << ... << args) << "\n";
 }
 ```
 
