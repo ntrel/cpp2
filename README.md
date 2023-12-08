@@ -517,20 +517,24 @@ If `next` is present, its expression will be evaluated at the
 end of each loop iteration.
 
 ```c++
+    // prints: 0 1 2
     (copy i := 0) while i < 3 next i++ {
         std::println(i);
     }
 ```
+Note: The above is a *parameterizedStatement*.
 
 ## `do`
 
 * *doWhileStatement*:
-  + `do` *blockStatement* `while` *expression* *nextClause*? `;`
+  + `do` *blockStatement* *nextClause*? `while` *expression* `;`
 
 ```c++
-    (copy i := 0) do {
+    // prints: 0 1 2
+    i := 0;
+    do {
         std::println(i);
-    } while i < 2 next i++;
+    } next i++ while i < 3;
 ```
 
 ## `for`
